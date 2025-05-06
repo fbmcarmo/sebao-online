@@ -1,10 +1,10 @@
 import Header from "@/components/Header";
 
-export default function Login(){
+export default function Sobre(){
     return (
         <div className="">
             <Header />
-            <p>Essa é a página de login</p>
+            <p>Essa página é de sobre</p>
         </div>
     )
 }
