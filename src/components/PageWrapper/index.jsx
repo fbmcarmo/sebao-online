@@ -1,3 +1,4 @@
+import Footer from "../Footer";
 import Header from "../Header";
 
 export default function PageWrapper({children}){
@@ -5,6 +6,7 @@ export default function PageWrapper({children}){
         <div className="w-full h-screen">
             <Header />
             {children}
+            <Footer />
         </div>
     )
 }

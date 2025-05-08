@@ -16,7 +16,7 @@ export default function Header(){
             <div className="w-[55%] h-[100%] flex items-center justify-between gap-[20px]">
                 <nav className="flex gap-[30px] pl-[20px]">
                     <a className="no-underline text-[20px] text-black font-bold cursor-pointer hover:text-[#8B4513]" 
-                    onClick={() => window.location.href = "/"}>Home</a> 
+                    onClick={() => window.location.href = "/"}>Início</a> 
                     <a className="no-underline text-[20px] text-black font-bold cursor-pointer hover:text-[#8B4513]" 
                     onClick={() => window.location.href = "/livros"}>Procure livros</a>
                     <a className="no-underline text-[20px] text-black font-bold cursor-pointer hover:text-[#8B4513]" 
@@ -24,7 +24,7 @@ export default function Header(){
                     <a className="no-underline text-[20px] text-black font-bold cursor-pointer hover:text-[#8B4513]" 
                     onClick={() => window.location.href = "/contatos"}>Contatos</a>
                 </nav>
-                <div className="w-[40%] h-[35px] flex items-center border-2 border-[#8B4513] rounded-[10px] px-3 bg-white">
+                <div className="w-[40%] h-[35px] flex items-center border-2 border-[#8B4513] rounded-[10px] px-3 pl-0.5 bg-white">
                     <input 
                         type="text" 
                         placeholder="Pesquise um livro..." 
