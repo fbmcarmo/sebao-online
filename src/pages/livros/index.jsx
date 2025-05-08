@@ -1,10 +1,9 @@
-import Header from "@/components/Header";
+import PageWrapper from "@/components/PageWrapper";
 
 export default function Livros(){
     return (
-        <div className="">
-            <Header />
+        <PageWrapper>
             <p>Essa página é de detalhes de livros</p>
-        </div>
+        </PageWrapper>
     )
 }

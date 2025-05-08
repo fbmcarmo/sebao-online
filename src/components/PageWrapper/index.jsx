@@ -1,5 +1,10 @@
-export default function PageWrapper(){
+import Header from "../Header";
+
+export default function PageWrapper({children}){
     return (
-        <div className=""></div>
+        <div className="w-full h-screen">
+            <Header />
+            {children}
+        </div>
     )
 }

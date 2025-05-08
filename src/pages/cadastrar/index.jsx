@@ -1,10 +1,9 @@
-import Header from "@/components/Header";
+import PageWrapper from "@/components/PageWrapper";
 
 export default function Cadastrar(){
     return (
-        <div className="">
-            <Header />
+        <PageWrapper>
             <p>Essa é a página de cadastro</p>
-        </div>
+        </PageWrapper>
     )
 }

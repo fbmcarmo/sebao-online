@@ -1,10 +1,9 @@
-import Header from "@/components/Header";
+import PageWrapper from "@/components/PageWrapper";
 
 export default function Carrinho(){
     return (
-        <div className="">
-            <Header />
-            <p>Esse é o carrinho</p>
-        </div>
+        <PageWrapper>
+            <p>Essa é a página de carrinho</p>
+        </PageWrapper>
     )
 }

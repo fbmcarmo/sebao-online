@@ -1,10 +1,9 @@
-import Header from "@/components/Header";
+import PageWrapper from "@/components/PageWrapper";
 
 export default function Contatos(){
     return (
-        <div className="">
-            <Header />
+        <PageWrapper>
             <p>Essa página é de contatos</p>
-        </div>
+        </PageWrapper>
     )
 }

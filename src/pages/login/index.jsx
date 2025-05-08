@@ -1,10 +1,9 @@
-import Header from "@/components/Header";
+import PageWrapper from "@/components/PageWrapper";
 
 export default function Login(){
     return (
-        <div className="">
-            <Header />
+        <PageWrapper>
             <p>Essa é a página de login</p>
-        </div>
+        </PageWrapper>
     )
 }

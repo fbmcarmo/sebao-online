@@ -1,10 +1,9 @@
-import Header from "@/components/Header";
+import PageWrapper from "@/components/PageWrapper";
 
 export default function Home(){
   return (
-    <div className="">
-      <Header />
-      <p>Essa é a página Home</p>
-    </div>
+      <PageWrapper>
+        <p>Essa é a página Home</p>
+      </PageWrapper>
   )
 }
