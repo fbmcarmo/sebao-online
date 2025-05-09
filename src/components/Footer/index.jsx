@@ -34,11 +34,19 @@ export default function Footer() {
         </div>
         <div>
           <h4 className="text-lg font-semibold mb-2">Categorias</h4>
-          <ul className="space-y-1">
+          <ul className="grid grid-cols-2 gap-x-8 gap-y-1">
             <li><a className="hover:underline cursor-pointer">Romance</a></li>
             <li><a className="hover:underline cursor-pointer">Ficção</a></li>
+            <li><a className="hover:underline cursor-pointer">Não-Ficção</a></li>
+            <li><a className="hover:underline cursor-pointer">Ficção Científica</a></li>
+            <li><a className="hover:underline cursor-pointer">Mistério</a></li>
+            <li><a className="hover:underline cursor-pointer">Fantasia</a></li>
             <li><a className="hover:underline cursor-pointer">Autoajuda</a></li>
-            <li><a className="hover:underline cursor-pointer">Didáticos</a></li>
+            <li><a className="hover:underline cursor-pointer">Biografia</a></li>
+            <li><a className="hover:underline cursor-pointer">História</a></li>
+            <li><a className="hover:underline cursor-pointer">Infantil</a></li>
+            <li><a className="hover:underline cursor-pointer">Didático</a></li>
+            <li><a className="hover:underline cursor-pointer">Ciência</a></li>
           </ul>
         </div>
         <div>
