@@ -7,7 +7,7 @@ import { FaShoppingCart } from "react-icons/fa";
 
 export default function Header(){
     return (
-        <header className="w-full h-[70px] flex bg-[#F5F5DC] justify-between pr-6 pl-2 items-center">
+        <header className="w-full h-[70px] flex bg-[#F5F5DC] justify-between pr-6 pl-6 items-center">
             <div className="w-[10%] h-[100%] flex items-center justify-center gap-1">
                 <FaBookReader color="#8B4513" size={30}/>
                 <p className="text-[20px] font-bold cursor-pointer whitespace-nowrap" 
@@ -24,14 +24,16 @@ export default function Header(){
                     <a className="no-underline text-[20px] text-black font-bold cursor-pointer hover:text-[#8B4513]" 
                     onClick={() => window.location.href = "/contatos"}>Contatos</a>
                 </nav>
-                <div className="w-[40%] h-[35px] flex items-center border-2 border-[#8B4513] rounded-[10px] px-3 pl-0.5 bg-white">
+                <div className="w-[40%] h-[35px] flex items-center border-2 border-[#8B4513] rounded-[10px]
+                 px-3 pl-0.5 bg-white">
                     <input 
                         type="text" 
                         placeholder="Pesquise um livro..." 
                         className="w-full h-full border-none outline-none text-[16px] pl-2"
                     />
-                    <button className="text-[#8B4513] text-[20px] cursor-pointer ml-2">
-                        <FaMagnifyingGlass />
+                    <button className="text-[#8B4513] text-[20px] cursor-pointer ml-2 transform active:scale-110
+                     transition-all duration-150">
+                        <FaMagnifyingGlass size={20} />
                     </button>
                 </div>
             </div>
@@ -64,3 +66,6 @@ export default function Header(){
         </header>
     )
 }
+
+
+
