@@ -1,4 +1,10 @@
-import PageWrapper from "@/components/PageWrapper";
+import PageWrapper from "@/components/PageWrapper"
+import matematica from "/public/matematica.jpg"
+import portugues from "/public/portugues.jpg"
+import historia from "/public/historia.jpg"
+import geografia from "/public/geografia.jpg"
+import ingles from "/public/ingles.jpg"
+import quimica from "/public/quimica.jpg"
 
 export default function Home(){
   return (
@@ -26,31 +32,31 @@ export default function Home(){
                   <div className="grid grid-cols-3 gap-4">
                     <div className="flex flex-col gap-4">
                       <div className="h-60 w-46 shadow-xl transform rotate-3 -translate-y-2 bg-white p-2">
-                        <img src="https://ecommerce.konekta.com.br/storage/covers/o-grande-livro-de-matematica-do-manual-do-mundo-anotacoes-incriveis-e-divertidas-para-voce-aprende-173736.jpg" 
+                        <img src={matematica.src} 
                         alt="Capa de livro" className="h-full w-full object-cover" />
                       </div>
                       <div className="h-60 w-46 shadow-xl transform -rotate-6 translate-y-2 bg-white p-2">
-                        <img src="https://a-static.mlcdn.com.br/800x560/livro-portugues-linguagens-volume-1/meiereldoradodistribuidora/1f5ca9a4822311ee87544201ac185040/502eebb3fc5726ec8b6ee8e408799313.jpg" 
+                        <img src={portugues.src} 
                         alt="Capa de livro" className="h-full w-full object-cover" />
                       </div>
                     </div>
                     <div className="flex flex-col gap-4 mt-8">
                       <div className="h-60 w-46 shadow-xl transform -rotate-3 bg-white p-2">
-                        <img src="https://aventurasnahistoria.uol.com.br/media/uploads/amazon/historia_do_mundo_pra_quem_tem_pressa_amazon.jpg" 
+                        <img src={historia.src}
                         alt="Capa de livro" className="h-full w-full object-cover" />
                       </div>
                       <div className="h-60 w-46 shadow-xl transform rotate-6 -translate-y-2 bg-white p-2">
-                        <img src="https://image.isu.pub/230628184051-ee58994565472ee5a15ca627e82419ef/jpg/page_1.jpg" 
+                        <img src={geografia.src} 
                         alt="Capa de livro" className="h-full w-full object-cover" />
                       </div>
                     </div>
                     <div className="flex flex-col gap-4 mt-4">
                     <div className="h-60 w-46 shadow-xl transform rotate-2 -translate-y-1 bg-white p-2">
-                      <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgeUSz84cu525WZxLtlfWHsILy5D7dNkxu191yMHspflFexncHGkl-pplS18PRUr--qco3fruYqOLhKnDG7F4fSYle2An_M5b705Sb4AKAyIxRkD3GzTynBS5A7n6ZPtHYZrnVoJaXwwrLLttn029u-oPEFa2j1UPNJRhuSvrPZY6AjGvCgnOQ9uDKe/s16000/livro-ingles-em-viagens.jpg" 
+                      <img src={ingles.src} 
                       alt="Capa de livro" className="h-full w-full object-cover" />
                     </div>
                     <div className="h-60 w-46 shadow-xl transform -rotate-2 translate-y-1 bg-white p-2">
-                      <img src="https://images-na.ssl-images-amazon.com/images/I/710dng7xRWL.jpg" 
+                      <img src={quimica.src} 
                       alt="Capa de livro" className="h-full w-full object-cover" />
                     </div>
                   </div>
