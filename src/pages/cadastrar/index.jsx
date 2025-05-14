@@ -1,8 +1,8 @@
 import PageWrapper from "@/components/PageWrapper";
 
-export default function Login() {
+export default function Cadastrar() {
   return (
-  <PageWrapper>
+  <PageWrapper showHeader = {false} showFooter = {false}>
     <div className="w-full h-[80vh] flex items-center justify-center">
       <form className="bg-white p-6 rounded flex flex-col gap-2 shadow-md w-full max-w-sm ">
         <h1 className="text-xl font-bold mb-4 text-center text-[#884211]">
