@@ -2,7 +2,7 @@ import PageWrapper from "@/components/PageWrapper";
 
 export default function Login() {
   return (
-  <PageWrapper>
+  <PageWrapper showHeader = {false} showFooter = {false}>
     <div className="w-full h-[80vh] flex items-center justify-center">
       <form className="bg-white p-6 rounded flex flex-col gap-2 shadow-md w-full max-w-sm ">
         <h1 className="text-xl font-bold mb-4 text-center text-[#884211]">
@@ -11,7 +11,7 @@ export default function Login() {
         <label className="block text-sm font-bold text-gray-700">Email</label>
         <input
           type="email"
-          className="w-full p-2 border rounded mb-4"
+          className="w-full p-2 border rounded mb-4 focus:outline-none focus:ring-2 focus:ring-[#884211]"
           placeholder="seu@email.com"
           required
         />
@@ -19,7 +19,7 @@ export default function Login() {
         <input
           type="password"
           placeholder="******"
-          className="w-full p-2 border rounded focus:outline-nome focus:ring-2 focus:ring-[#884211]"
+          className="w-full p-2 border rounded focus:outline-none focus:ring-2 focus:ring-[#884211]"
           required
         />
         <div className="mt-6">
