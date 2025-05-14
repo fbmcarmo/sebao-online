@@ -29,35 +29,29 @@ export default function Home(){
               </div>
               <div className="w-[50%] order-1 md:order-2 mt-36">
                 <div className="relative">
-                  <div className="grid grid-cols-3 gap-4">
-                    <div className="flex flex-col gap-4">
+                  <div className="flex justify-between gap-4">
+                    <div className="flex flex-1 flex-col gap-4">
                       <div className="h-60 w-46 shadow-xl transform rotate-3 -translate-y-2 bg-white p-2">
-                        <img src={matematica.src} 
-                        alt="Capa de livro" className="h-full w-full object-cover" />
+                        <img src={matematica.src} alt="Capa de livro" className="h-full w-full object-cover" />
                       </div>
                       <div className="h-60 w-46 shadow-xl transform -rotate-6 translate-y-2 bg-white p-2">
-                        <img src={portugues.src} 
-                        alt="Capa de livro" className="h-full w-full object-cover" />
+                        <img src={portugues.src} alt="Capa de livro" className="h-full w-full object-cover" />
                       </div>
                     </div>
-                    <div className="flex flex-col gap-4 mt-8">
+                    <div className="flex flex-1 flex-col gap-4 mt-8">
                       <div className="h-60 w-46 shadow-xl transform -rotate-3 bg-white p-2">
-                        <img src={historia.src}
-                        alt="Capa de livro" className="h-full w-full object-cover" />
+                        <img src={historia.src} alt="Capa de livro" className="h-full w-full object-cover" />
                       </div>
                       <div className="h-60 w-46 shadow-xl transform rotate-6 -translate-y-2 bg-white p-2">
-                        <img src={geografia.src} 
-                        alt="Capa de livro" className="h-full w-full object-cover" />
+                        <img src={geografia.src} alt="Capa de livro" className="h-full w-full object-cover" />
                       </div>
                     </div>
-                    <div className="flex flex-col gap-4 mt-4">
+                    <div className="flex flex-1 flex-col gap-4 mt-4">
                     <div className="h-60 w-46 shadow-xl transform rotate-2 -translate-y-1 bg-white p-2">
-                      <img src={ingles.src} 
-                      alt="Capa de livro" className="h-full w-full object-cover" />
+                      <img src={ingles.src} alt="Capa de livro" className="h-full w-full object-cover" />
                     </div>
                     <div className="h-60 w-46 shadow-xl transform -rotate-2 translate-y-1 bg-white p-2">
-                      <img src={quimica.src} 
-                      alt="Capa de livro" className="h-full w-full object-cover" />
+                      <img src={quimica.src} alt="Capa de livro" className="h-full w-full object-cover" />
                     </div>
                   </div>
                   </div>

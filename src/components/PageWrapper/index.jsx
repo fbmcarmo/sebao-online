@@ -1,14 +1,14 @@
 import Footer from "../Footer";
 import Header from "../Header";
 
-export default function PageWrapper({children}){
+export default function PageWrapper({children, showHeader = true, showFooter = true}){
     return (
         <div className="w-full h-full min-h-screen flex flex-col">
-            <Header />
+            {showHeader && <Header />}
             <div className="w-full h-full min-h-screen bg-gradient-to-t from-[#F5F5DC] to-[#FFFFFF]">
                 {children} 
             </div>
-            <Footer />
+            {showFooter && <Footer />}
         </div>
     )
 }
