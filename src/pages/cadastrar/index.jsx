@@ -15,7 +15,7 @@ export default function Cadastrar() {
           placeholder="Nome"
           required
         />
-        <label className="block text-sm font-bold text-gray-700">Email</label>
+        <label className="block text-sm font-bold text-gray-700">E-mail</label>
         <input
           type="email"
           className="w-full p-2 border rounded  focus:outline-none focus:ring-2 focus:ring-[#884211]"

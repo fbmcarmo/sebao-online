@@ -8,7 +8,7 @@ export default function Login() {
         <h1 className="text-xl font-bold mb-4 text-center text-[#884211]">
           Entrar no Sebão Online
         </h1>
-        <label className="block text-sm font-bold text-gray-700">Email</label>
+        <label className="block text-sm font-bold text-gray-700">E-mail</label>
         <input
           type="email"
           className="w-full p-2 border rounded mb-4 focus:outline-none focus:ring-2 focus:ring-[#884211]"
