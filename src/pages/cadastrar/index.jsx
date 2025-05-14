@@ -41,13 +41,13 @@ export default function Cadastrar() {
             type="submit"
             className="w-full bg-[#884211] text-white p-2 rounded houver:bg-[#6f350f] transition"
           >
-            Entrar
+            Cadastrar
           </button>
         </div>
         <div className="mt-4">
           <p className="text-center text-[#976460]">Já tem uma conta?
             <button className="text-[#976460] font-bold cursor-pointer pl-2" 
-            onClick={() => window.location.href = "/cadastrar"}>
+            onClick={() => window.location.href = "/login"}>
               Entre
             </button>
           </p>
