@@ -1,6 +1,6 @@
 import PageWrapper from "@/components/PageWrapper";
 
-export default function LoginPage() {
+export default function Login() {
   return (
     <div className="mih-h-screen flex flex-col items-center justify-center bg-gray-100">
       <Header />
@@ -13,13 +13,21 @@ export default function LoginPage() {
           type="email"
           className="w-full p-2 border rounded mb-4"
           placeholder="Email cadastrado"
+          required
+        />
+        <label className="block text-sm font-medium text-gray-700">Senha</label>
+        <input
+          type="password"
+          placeholder="******"
+          className="w-full p-2 border rounded focus:outline-nome focus:ring-2 focus:ring-[#884211]"
+          required
         />
 
         <button
           type="submit"
-          className="w-full bg-[#884211] text-white p-2 rounded houver:bg-[#6f350f]"
+          className="w-full bg-[#884211] text-white p-2 rounded houver:bg-[#6f350f] transition"
         >
-          entrar
+          Logar
         </button>
       </form>
     </div>
