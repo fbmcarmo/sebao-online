@@ -11,14 +11,14 @@ export default function Cadastrar() {
         <label className="block te xt-sm font-bold text-gray-700">Nome</label>
         <input
           type="email"
-          className="w-full p-2 border rounded mb-4 focus:outline-none focus:ring-2 focus:ring-[#884211]"
+          className="w-full p-2 border rounded focus:outline-none focus:ring-2 focus:ring-[#884211]"
           placeholder="Nome"
           required
         />
         <label className="block text-sm font-bold text-gray-700">Email</label>
         <input
           type="email"
-          className="w-full p-2 border rounded mb-4 focus:outline-none focus:ring-2 focus:ring-[#884211]"
+          className="w-full p-2 border rounded  focus:outline-none focus:ring-2 focus:ring-[#884211]"
           placeholder="seu@email.com"
           required
         />
