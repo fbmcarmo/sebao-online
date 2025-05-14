@@ -58,9 +58,20 @@ export default function Home(){
                 </div>
               </div>
         </section>
-        <section>
-          <div className="">
+        <section className="w-full h-full mt-16">
+          <div className="w-full h-full flex flex-wrap items-center justify-center bg-white gap-14 p-12">
+              <div className="w-[300px] h-[200px] bg-[#F5F5DC] rounded-md">
 
+              </div>
+              <div className="w-[300px] h-[200px] bg-[#F5F5DC] rounded-md">
+
+              </div>
+              <div className="w-[300px] h-[200px] bg-[#F5F5DC] rounded-md">
+
+              </div>
+              <div className="w-[300px] h-[200px] bg-[#F5F5DC] rounded-md">
+
+              </div>
           </div>
         </section>
         <section>
