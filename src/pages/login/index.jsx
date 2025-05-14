@@ -2,8 +2,8 @@ import PageWrapper from "@/components/PageWrapper";
 
 export default function Login() {
   return (
-    <div className="mih-h-screen flex flex-col items-center justify-center bg-gray-100">
-      <Header />
+    <PageWrapper>
+    <div className="w-full h-[80vh] flex items-center justify-center">
       <form className="bg-white p-6 rounded shadow-md w-full max-w-sm">
         <h2 className="text-xl font-bold mb-4 text-center text-[#884211]">
           Login:
@@ -31,5 +31,6 @@ export default function Login() {
         </button>
       </form>
     </div>
+    </PageWrapper>
   );
 }
