@@ -5,10 +5,11 @@ import historia from "/public/historia.jpg"
 import geografia from "/public/geografia.jpg"
 import ingles from "/public/ingles.jpg"
 import quimica from "/public/quimica.jpg"
-import { LuBookOpen } from "react-icons/lu";
-import { LuTruck } from "react-icons/lu";
-import { LuBadgePercent } from "react-icons/lu";
-import { LuBookCheck } from "react-icons/lu";
+import { LuBookOpen, LuTruck, LuBadgePercent, LuBookCheck } from "react-icons/lu";
+
+const categorias = [
+"Romance", "Ficção", "Não-Ficção", "Ficção Científica" , "Mistério", "Fantasia", "Autoajuda", "Biografia", "História", "Infantil",
+"Didático", "Ciência"]
 
 export default function Home(){
   return (
@@ -64,33 +65,76 @@ export default function Home(){
         </section>
         <section className="w-full h-full mt-16">
           <div className="w-full h-full flex flex-wrap items-center justify-center bg-white gap-14 p-12">
-              <div className="w-[300px] h-[200px] bg-[#F5F5DC] rounded-md flex justify-center">
+              <div className="w-[300px] h-[200px] bg-[#F5F5DC] rounded-md flex
+               flex-col items-center justify-center p-4 text-center space-y-2 hover:scale-105 transition">
                 <LuBookOpen color="#8B4513" size={35} />
+                <h3 className="text-[20px] font-bold">Seleção com curadoria</h3>
+                <p className="text-[15px]">Títulos cuidadosamente selecionados em todos os gêneros com excelentes condições</p>
               </div>
-              <div className="w-[300px] h-[200px] bg-[#F5F5DC] rounded-md flex justify-center">
+              <div className="w-[300px] h-[200px] bg-[#F5F5DC] rounded-md flex
+               flex-col items-center justify-center p-4 text-center space-y-2 hover:scale-105 transition">
                 <LuTruck color="#8B4513" size={35} />
+                <h3 className="text-[20px] font-bold">Envio rápido</h3>
+                <p className="text-[15px]">Entrega rápida e segura para todas as suas compras</p>
               </div>
-              <div className="w-[300px] h-[200px] bg-[#F5F5DC] rounded-md flex justify-center">
+              <div className="w-[300px] h-[200px] bg-[#F5F5DC] rounded-md flex
+               flex-col items-center justify-center p-4 text-center space-y-2 hover:scale-105 transition">
                 <LuBadgePercent color="#8B4513" size={35} />
+                <h3 className="text-[20px] font-bold">Ótimo valor</h3>
+                <p className="text-[15px]">Livros de qualidade a preços acessíveis, com descontos regulares</p>
               </div>
-              <div className="w-[300px] h-[200px] bg-[#F5F5DC] rounded-md flex justify-center">
+              <div className="w-[300px] h-[200px] bg-[#F5F5DC] rounded-md flex
+               flex-col items-center justify-center p-4 text-center space-y-2 hover:scale-105 transition">
                 <LuBookCheck color="#8B4513" size={35} />
+                <h3 className="text-[20px] font-bold">Garantia de qualidade</h3>
+                <p className="text-[15px]">Todos os livros são inspecionados para garantir que atendam aos nossos padrões de qualidade</p>
               </div>
           </div>
         </section>
-        <section>
-          <div className="">
+        <section className="w-full h-full flex">
+          <div className="w-full h-full flex flex-wrap items-center justify-center bg-[#F8F7E8] gap-14 p-12">
 
           </div>
         </section>
-        <section>
-          <div className="">
-
+        <section className="w-full h-full flex">
+          <div className="w-full h-full flex flex-wrap items-center justify-center bg-white gap-14 p-12">
+            <div className="w-full h-full flex flex-col items-center justify-center">
+              <div className="w-full h-[50%] flex items-center justify-center">
+                <h1 className="text-[30px] text-[#8B4513] font-bold">Procure por Categoria</h1>
+              </div>
+              <div className="w-full h-[50%] flex items-center justify-center mt-6">
+                <div className="w-full h-full flex flex-wrap items-center justify-center gap-6">
+                  {categorias.map((categ, index) => {
+                    return (
+                      <div key={index} className="w-[300px] h-[50px] bg-[#F5F5DC] rounded-md flex items-center justify-center
+                      hover:bg-[#8B4513]/30 transition-colors cursor-pointer">
+                          <button className="text-[20px] font-bold cursor-pointer">{categ}</button>
+                      </div>
+                    )
+                  })}
+                </div>  
+              </div>
+            </div>  
           </div>
         </section>
-        <section>
-          <div className="">
-
+        <section className="w-full h-full flex">
+          <div className="w-full h-full flex flex-col items-center justify-center bg-[#8B4513] gap-4 p-12">
+            <div className="w-full flex items-center justify-center">
+              <h1 className="text-[30px] font-bold text-white text-center">Junte-se à nossa comunidade de livros</h1>
+            </div>
+            <div className="w-full max-w-3xl flex items-center justify-center">
+              <p className="text-[20px] text-white text-center">
+                Assine nosso boletim informativo para receber descontos exclusivos, novidades e recomendações de leitura
+              </p>
+            </div>
+            <div className="w-full flex items-center justify-center">
+              <div className="w-full max-w-md flex items-center gap-2">
+                <input type="email" placeholder="Seu endereço de e-mail" className="w-full px-4 py-2 bg-white rounded-md border
+                 border-gray-300 focus:outline-none" />
+                <button className="bg-[#f40d0d] text-white px-4 py-2 min-w-[130px] cursor-pointer
+                 rounded-md hover:opacity-80 transition">Inscreva-se</button>
+              </div>
+            </div>
           </div>
         </section>
       </div>   
