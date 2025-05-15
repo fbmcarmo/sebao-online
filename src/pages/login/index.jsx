@@ -1,13 +1,18 @@
 import PageWrapper from "@/components/PageWrapper";
+import { FaBookReader } from "react-icons/fa";
+
 
 export default function Login() {
   return (
   <PageWrapper showHeader = {false} showFooter = {false}>
     <div className="w-full h-[80vh] flex items-center justify-center">
       <form className="bg-white p-6 rounded flex flex-col gap-2 shadow-md w-full max-w-sm ">
-        <h1 className="text-xl font-bold mb-4 text-center text-[#884211]">
-          Entrar no Sebão Online
-        </h1>
+      <div className = "flex items-center justify-center gap-2 mb-4">
+<FaBookReader className="text-[#884211]" size={28} />
+<h1 className="text-xl font-bold text-center text-[#884211]">
+Entrar no Sebão Online
+</h1>
+</div>
         <label className="block text-sm font-bold text-gray-700">E-mail</label>
         <input
           type="email"
