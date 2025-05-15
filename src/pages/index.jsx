@@ -5,6 +5,10 @@ import historia from "/public/historia.jpg"
 import geografia from "/public/geografia.jpg"
 import ingles from "/public/ingles.jpg"
 import quimica from "/public/quimica.jpg"
+import { LuBookOpen } from "react-icons/lu";
+import { LuTruck } from "react-icons/lu";
+import { LuBadgePercent } from "react-icons/lu";
+import { LuBookCheck } from "react-icons/lu";
 
 export default function Home(){
   return (
@@ -60,17 +64,17 @@ export default function Home(){
         </section>
         <section className="w-full h-full mt-16">
           <div className="w-full h-full flex flex-wrap items-center justify-center bg-white gap-14 p-12">
-              <div className="w-[300px] h-[200px] bg-[#F5F5DC] rounded-md">
-
+              <div className="w-[300px] h-[200px] bg-[#F5F5DC] rounded-md flex justify-center">
+                <LuBookOpen color="#8B4513" size={35} />
               </div>
-              <div className="w-[300px] h-[200px] bg-[#F5F5DC] rounded-md">
-
+              <div className="w-[300px] h-[200px] bg-[#F5F5DC] rounded-md flex justify-center">
+                <LuTruck color="#8B4513" size={35} />
               </div>
-              <div className="w-[300px] h-[200px] bg-[#F5F5DC] rounded-md">
-
+              <div className="w-[300px] h-[200px] bg-[#F5F5DC] rounded-md flex justify-center">
+                <LuBadgePercent color="#8B4513" size={35} />
               </div>
-              <div className="w-[300px] h-[200px] bg-[#F5F5DC] rounded-md">
-
+              <div className="w-[300px] h-[200px] bg-[#F5F5DC] rounded-md flex justify-center">
+                <LuBookCheck color="#8B4513" size={35} />
               </div>
           </div>
         </section>
