@@ -5,7 +5,7 @@ export default function Cadastrar() {
   return (
   <PageWrapper showHeader = {false} showFooter = {false}>
     <div className="w-full h-[10vh] flex items-center p-4">
-      <FaBookReader color="#8B4513" size={30} />
+      <FaBookReader color="#8B4513" size={20} />
         <p
           className="text-[20px] font-bold cursor-pointer whitespace-nowrap"
           onClick={() => window.location.href = "/"}
