@@ -1,8 +1,18 @@
-import PageWrapper from "@/components/PageWrapper";
+import PageWrapper from "@/components/PageWrapper"
+import { FaBookReader } from "react-icons/fa"
 
 export default function Cadastrar() {
   return (
   <PageWrapper showHeader = {false} showFooter = {false}>
+    <div className="w-full h-[10vh] flex items-center p-4">
+      <FaBookReader color="#8B4513" size={30} />
+        <p
+          className="text-[20px] font-bold cursor-pointer whitespace-nowrap"
+          onClick={() => window.location.href = "/"}
+        >
+          Sebão Online
+        </p>
+    </div>
     <div className="w-full h-[80vh] flex items-center justify-center">
       <form className="bg-white p-6 rounded flex flex-col gap-2 shadow-md w-full max-w-sm ">
         <h1 className="text-xl font-bold mb-4 text-center text-[#884211]">
