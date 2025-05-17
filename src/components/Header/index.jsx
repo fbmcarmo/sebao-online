@@ -8,7 +8,7 @@ export default function Header() {
     return (
         <header className="w-full h-[70px] flex bg-[#F5F5DC] justify-between px-6 items-center">
             <div className="w-[10%] h-full flex items-center justify-center gap-1">
-                <FaBookReader color="#8B4513" size={40} />
+                <FaBookReader color="#8B4513" size={20} />
                 <p
                     className="text-[20px] font-bold cursor-pointer whitespace-nowrap"
                     onClick={() => window.location.href = "/"}
