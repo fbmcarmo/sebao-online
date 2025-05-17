@@ -1,9 +1,18 @@
 import PageWrapper from "@/components/PageWrapper"
 import livraria from "/public/livraria.jpg"
-import Bruno from "/public/Bruno.jpg"
+import bruno from "/public/bruno.jpg"
+import davi from "/public/davi.jpg"
+import jardheson from "/public/jardheson.jpg"
+import alan from "/public/alan.jpg"
 import { HiOutlineLocationMarker } from "react-icons/hi"
 import { FaRegClock } from "react-icons/fa"
 import { MdOutlineMail } from "react-icons/md"
+
+const fotos = [{ src: bruno.src, nome: 'Bruno Moreira', cargo: 'Líder técnico' },
+                { src: davi.src, nome: 'Davi Ribeiro', cargo: 'Fundador' },
+                { src: jardheson.src, nome: 'Jardheson Fonseca', cargo: 'Gerente de remessa' },
+                { src: bruno.src, nome: 'Michele Araújo', cargo: 'Relações com o Cliente' },
+                { src: alan.src, nome: 'Alan Cruz', cargo: 'Especialista em livros' }]
 
 export default function Sobre(){
     return (
@@ -81,58 +90,48 @@ export default function Sobre(){
                     <div className="w-full h-[30%] flex items-center justify-center">
                         <h1 className="text-[30px] text-[#8B4513] font-bold">Conheça nossa equipe</h1>
                     </div>
-                    <div className="w-full h-[70%] flex items-center justify-center gap-10">
-                        <div className="w-full h-full flex flex-col items-center justify-center">
-                            <h1 className="text-[20px]">Membro da equipe</h1>
-                            <img src={Bruno.src} width={300} alt="Bruno" />
-                            <h2 className="text-[20px] font-bold">Bruno Moreira</h2>
-                            <p className="text-[20px]">Líder técnico</p>
-                        </div>
-                        <div className="w-full h-full flex flex-col items-center justify-center">
-                            <h1 className="text-[20px]">Membro da equipe</h1>
-                            <img src={Bruno.src} width={300} alt="Bruno" />
-                            <h2 className="text-[20px] font-bold">Davi Ribeiro</h2>
-                            <p className="text-[20px]">Fundador</p>
-                        </div>
-                        <div className="w-full h-full flex flex-col items-center justify-center">
-                            <h1 className="text-[20px]">Membro da equipe</h1>
-                            <img src={Bruno.src} width={300} alt="Bruno" />
-                            <h2 className="text-[20px] font-bold">Jardheson Fonseca</h2>
-                            <p className="text-[20px]">Gerente de remessa</p>
-                        </div>
-                        <div className="w-full h-full flex flex-col items-center justify-center">
-                            <h1 className="text-[20px]">Membro da equipe</h1>
-                            <img src={Bruno.src} width={300} alt="Bruno" />
-                            <h2 className="text-[20px] font-bold">Michele Araújo</h2>
-                            <p className="text-[20px]">Relações com o Cliente</p>
-                        </div>
-                        <div className="w-full h-full flex flex-col items-center justify-center">
-                            <h1 className="text-[20px]">Membro da equipe</h1>
-                            <img src={Bruno.src} width={300} alt="Bruno" />
-                            <h2 className="text-[20px] font-bold">Alan Cruz</h2>
-                            <p className="text-[20px]">Especialista em livros</p>
-                        </div>
+                    <div className="w-full h-[70%] flex flex-wrap items-center justify-center gap-10">
+                    {fotos.map((membro, index) => (
+                    <div key={index} className="w-60 flex flex-col items-center justify-center">
+                        <h1 className="text-[20px]">Membro da equipe</h1>
+                        <img
+                            src={membro.src}
+                            alt={membro.nome}
+                            className="w-60 h-60 object-cover rounded-full"
+                        />
+                        <h2 className="text-[20px] font-bold">{membro.nome}</h2>
+                        <p className="text-[20px] text-center">{membro.cargo}</p>
                     </div>
+                ))}
                 </div>
+            </div>
             </section>
             <section className="w-full h-full flex p-10 bg-white">
                 <div className="w-full h-full flex flex-wrap items-center justify-center bg-[#EFE6DE] gap-6 p-14">
                     <div className="w-full h-[30%] flex items-center justify-center">
                         <h1 className="text-[30px] text-[#8B4513] font-bold">Visite nossa loja</h1>
                     </div>
-                    <div className="w-full h-[70%] flex items-center justify-center">
-                        <div className="w-full h-[50%] flex items-center justify-center">
-                            <div className="w-[800px] h-[300px] flex items-center justify-center bg-[#F5F5DC]">
-                                <HiOutlineLocationMarker color="#8B4513" size={50} />
+                    <div className="w-full h-[70%] flex flex-wrap items-center justify-center">
+                        <div className="w-full lg:w-[50%] flex items-center justify-center">
+                            <div className="w-[800px] h-[300px]">
+                                <iframe
+                                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15927.023353536233!2d-38.491012599999996!3d-3.7357129!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x7c74889fb9f1c69%3A0x1285fa3d4c8bb63d!2sDigital%20College%20Brasil!5e0!3m2!1spt-BR!2sbr!4v1715956019051!5m2!1spt-BR!2sbr"
+                                    width="100%"
+                                    height="100%"
+                                    style={{ border: 0 }}
+                                    allowFullScreen=""
+                                    loading="lazy"
+                                    referrerPolicy="no-referrer-when-downgrade"
+                                ></iframe>
                             </div>
                         </div>
-                        <div className="w-full h-[50%] flex flex-col items-center justify-center p-14">
+                        <div className="w-full lg:w-[50%] flex flex-col items-center justify-center p-14">
                             <div className="w-full h-full flex flex-col items-start justify-center">
                                 <div className="flex items-center gap-2">
                                     <HiOutlineLocationMarker color="#8B4513" size={30} />
                                     <h1 className="text-[20px] font-bold">Localização</h1>
                                 </div>
-                                <p className="text-[20px]">Fortaleza, Ceará, Brasil</p>
+                                <p className="text-[20px]">Av. Santos Dumont, 1510 - 1° andar - Aldeota, Fortaleza - CE, Brasil, 60150-161</p>
                             </div>
                             <div className="w-full h-full flex flex-col items-start justify-center mt-4">
                                 <div className="flex items-center gap-2">
@@ -169,7 +168,8 @@ export default function Sobre(){
                     </div>
                     <div className="w-full h-full flex items-center justify-center">
                         <button className="text-[20px] text-white bg-[#955527] px-6 py-3 
-                        rounded-xl cursor-pointer hover:bg-[#7a431e] transition-colors duration-300">
+                        rounded-xl cursor-pointer hover:bg-[#7a431e] transition-colors duration-300"
+                        onClick={() => window.location.href = "/livros"}>
                             Navegue pelos livros
                         </button>
                     </div>
