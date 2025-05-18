@@ -4,6 +4,7 @@ import bruno from "/public/bruno.jpg"
 import davi from "/public/davi.jpg"
 import jardheson from "/public/jardheson.jpg"
 import alan from "/public/alan.jpg"
+import michele from "/public/michele.jpg"
 import { HiOutlineLocationMarker } from "react-icons/hi"
 import { FaRegClock } from "react-icons/fa"
 import { MdOutlineMail } from "react-icons/md"
@@ -11,7 +12,7 @@ import { MdOutlineMail } from "react-icons/md"
 const fotos = [{ src: bruno.src, nome: 'Bruno Moreira', cargo: 'Líder técnico' },
                 { src: davi.src, nome: 'Davi Ribeiro', cargo: 'Fundador' },
                 { src: jardheson.src, nome: 'Jardheson Fonseca', cargo: 'Gerente de remessa' },
-                { src: bruno.src, nome: 'Michele Araújo', cargo: 'Relações com o Cliente' },
+                { src: michele.src, nome: 'Michele Araújo', cargo: 'Relações com o Cliente' },
                 { src: alan.src, nome: 'Alan Cruz', cargo: 'Especialista em livros' }]
 
 export default function Sobre(){
