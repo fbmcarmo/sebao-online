@@ -4,10 +4,10 @@ import { FaRegUser } from "react-icons/fa";
 import { FaMagnifyingGlass } from "react-icons/fa6";
 import { FaShoppingCart } from "react-icons/fa";
 
-export default function Header({ showLogo = true }) {
+export default function Header() {
     return (
         <header className="w-full h-[70px] flex bg-[#F5F5DC] justify-between px-6 items-center">
-            {showLogo && (<div className="w-[10%] h-full flex items-center justify-center gap-1">
+            <div className="w-[10%] h-full flex items-center justify-center gap-1">
                 <FaBookReader color="#8B4513" size={40} />
                 <p
                     className="text-[20px] font-bold cursor-pointer whitespace-nowrap"
@@ -16,7 +16,6 @@ export default function Header({ showLogo = true }) {
                     Sebão Online
                 </p>
             </div>
-            )}
             <div className="w-[70%] h-full flex items-center justify-between gap-[20px]">
                 <nav className="flex gap-[30px] pl-[20px]">
                     <a className="text-[20px] text-black font-bold cursor-pointer hover:text-[#8B4513]" 
