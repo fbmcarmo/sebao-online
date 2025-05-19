@@ -12,6 +12,10 @@ import milnovecentoseoitentaequatro from "/public/milnovecentoseoitentaequatro.j
 import inglesCard from "/public/inglesCard.jpg"
 import quarentaEoitoLeisDoPoder from "/public/quarentaEoitoLeisDoPoder.jpg"
 import javascript from "/public/javascript.jpg"
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Navigation } from 'swiper/modules';
+import 'swiper/css';
+import 'swiper/css/navigation';
 
 const categorias = [
 "Romance", "Ficção", "Não-Ficção", "Ficção Científica" , "Mistério", "Fantasia", "Autoajuda", "Biografia", "História", "Infantil",
@@ -102,65 +106,76 @@ export default function Home(){
             <div className="w-full h-[10%] flex items-center">
               <h1 className="text-[35px] text-[#8B4513] font-bold">Explore os livros</h1>
             </div>
-            <div className="w-full overflow-x-auto flex gap-6 snap-x snap-mandatory scroll-smooth px-4">
-              <div className="flex gap-6 min-w-full sm:min-w-[600px] md:min-w-[700px]">
-                <div className="snap-start shrink-0">
-                  <CardLivro 
-                    banner={harryPotter.src}
-                    titulo="Harry Potter e a pedra filosofal"
-                    estado="Bom"
-                    autor="J. K. Rowling"
-                    preco="R$ 20,00"
-                    categoria="Fantasia"
-                  />
-                </div>
-                <div className="snap-start shrink-0">
-                  <CardLivro
-                    banner={milnovecentoseoitentaequatro.src}
-                    titulo="1984"
-                    estado="Muito bom"
-                    autor="George Orwell"
-                    preco="R$ 25,00"
-                    categoria="Ficção Científica"
-                  />
-                </div>
-                <div className="snap-start shrink-0">
-                  <CardLivro
-                    banner={inglesCard.src}
-                    titulo="Inglês para falar em qualquer situação"
-                    estado="Ruim"
-                    autor=" Chris Tunwell, Fernando Acuña"
-                    preco="R$ 19,99"
-                    categoria="Didático"
-                  />
-                </div>
-                <div className="snap-start shrink-0">
-                  <CardLivro
-                    banner={quarentaEoitoLeisDoPoder.src}
-                    titulo="As 48 leis do poder"
-                    estado="Moderado"
-                    autor="Robert Greene"
-                    preco="R$ 23,99"
-                    categoria="Autoajuda"
-                  />
-                </div>
-                <div className="snap-start shrink-0">
-                  <CardLivro
-                    banner={javascript.src}
-                    titulo="JavaScript: O Guia Definitivo"
-                    estado="Bom"
-                    autor="David Flanagan"
-                    preco="R$ 9,99"
-                    categoria="Didático"
-                  />
-                </div>
-              </div>
-            </div>
-            <div className="w-full h-[10%] flex items-center justify-center">
-              <button className="text-[20px] text-[#955527] bg-white border border-[#955527] px-6 py-3 
-                rounded-xl cursor-pointer hover:bg-[#7a431e]/60 transition-colors duration-300"
-                onClick={() => window.location.href = "/livros"}>
-                  Veja todos os livros
+          <div className="w-full">
+            <Swiper
+              modules={[Navigation]}
+              spaceBetween={20}
+              slidesPerView={1}
+              navigation
+              breakpoints={{
+                640: { slidesPerView: 1 },
+                768: { slidesPerView: 2 },
+                1024: { slidesPerView: 4 },
+              }}
+              className="w-full px-4">
+              <SwiperSlide>
+                <CardLivro 
+                  banner={harryPotter.src}
+                  titulo="Harry Potter e a pedra filosofal"
+                  estado="Bom"
+                  autor="J. K. Rowling"
+                  preco="R$ 20,00"
+                  categoria="Fantasia"
+                />
+              </SwiperSlide>
+              <SwiperSlide>
+                <CardLivro 
+                  banner={milnovecentoseoitentaequatro.src}
+                  titulo="1984"
+                  estado="Muito bom"
+                  autor="George Orwell"
+                  preco="R$ 25,00"
+                  categoria="Ficção Científica"
+                />
+              </SwiperSlide>
+              <SwiperSlide>
+                <CardLivro 
+                  banner={inglesCard.src}
+                  titulo="Inglês para falar em qualquer situação"
+                  estado="Ruim"
+                  autor="Chris Tunwell, Fernando Acuña"
+                  preco="R$ 19,99"
+                  categoria="Didático"
+                />
+              </SwiperSlide>
+              <SwiperSlide>
+                <CardLivro 
+                  banner={quarentaEoitoLeisDoPoder.src}
+                  titulo="As 48 leis do poder"
+                  estado="Moderado"
+                  autor="Robert Greene"
+                  preco="R$ 23,99"
+                  categoria="Autoajuda"
+                />
+              </SwiperSlide>
+              <SwiperSlide>
+                <CardLivro 
+                  banner={javascript.src}
+                  titulo="JavaScript: O Guia Definitivo"
+                  estado="Bom"
+                  autor="David Flanagan"
+                  preco="R$ 9,99"
+                  categoria="Didático"
+                />
+              </SwiperSlide>
+            </Swiper>
+          </div>
+          <div className="w-full h-[10%] flex items-center justify-center">
+              <button
+                  className="text-[20px] text-[#955527] bg-white border border-[#955527] px-6 py-3 
+                  rounded-xl cursor-pointer hover:bg-[#7a431e]/60 transition-colors duration-300"
+                  onClick={() => window.location.href = "/livros"}>
+                Veja todos os livros
               </button>
             </div>
           </div>

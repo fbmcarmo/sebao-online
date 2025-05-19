@@ -1,6 +1,6 @@
 import PageWrapper from "@/components/PageWrapper";
 
-export default function Contatos(){
+export default function Contato(){
     return (
         <PageWrapper>
             <p>Essa página é de contatos</p>

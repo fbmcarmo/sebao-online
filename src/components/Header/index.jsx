@@ -1,10 +1,25 @@
+'use client';
+
 import { FaBookReader } from "react-icons/fa";
 import { CiLogin } from "react-icons/ci";
 import { FaRegUser } from "react-icons/fa";
 import { FaMagnifyingGlass } from "react-icons/fa6";
 import { FaShoppingCart } from "react-icons/fa";
+import { useState } from "react";
+import { useRouter } from 'next/navigation';
 
 export default function Header() {
+
+    const [busca, setBusca] = useState('');
+    const router = useRouter();
+
+  const handleSearch = (e) => {
+    e.preventDefault();
+    if (busca.trim()) {
+      router.push(`/procurar?q=${encodeURIComponent(busca.trim())}`);
+    }
+  };
+
     return (
         <header className="w-full h-[70px] flex bg-[#F5F5DC] justify-between px-6 items-center">
             <div className="w-[10%] h-full flex items-center justify-center gap-1">
@@ -28,15 +43,22 @@ export default function Header() {
                     onClick={() => window.location.href = "/contatos"}>Contato</a>
                 </nav>
                 <div className="w-[50%] h-[35px] flex items-center border-2 border-[#8B4513] rounded-[10px] px-3 bg-white">
-                    <input
-                        type="text"
-                        placeholder="Pesquise um livro..."
-                        className="w-full h-full border-none outline-none text-[16px] pl-2"
-                    />
-                    <button className="text-[#8B4513] text-[20px] cursor-pointer ml-2 transform active:scale-110 
-                    transition-all duration-150">
-                        <FaMagnifyingGlass size={20} />
-                    </button>
+                    <form onSubmit={handleSearch} className="flex gap-2">
+                        <input
+                            type="text"
+                            placeholder="Digite título, autor ou categoria..."
+                            value={busca}
+                            onChange={(e) => setBusca(e.target.value)}
+                            className="px-4 py-2 rounded-md border border-[#ccc] focus:outline-none"
+                        />
+                        <button 
+                            type="submit"
+                            className="text-[#8B4513] text-[20px] cursor-pointer ml-2 transform active:scale-110 
+                            transition-all duration-150"
+                            onClick={() => window.location.href = "/procurar"}>
+                            <FaMagnifyingGlass size={20} />
+                        </button>
+                    </form>
                 </div>
             </div>
             <div className="flex items-center gap-4">
