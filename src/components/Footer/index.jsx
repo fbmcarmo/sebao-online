@@ -1,7 +1,22 @@
+'use client';
+
+import { useRouter } from 'next/navigation';
 import { FaFacebookF, FaInstagram, FaBookReader } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
 
 export default function Footer() {
+
+  const router = useRouter();
+
+  const handleCategoriaClick = (categoria) => {
+    router.push(`/livros?q=${encodeURIComponent(categoria)}`);
+  };
+
+  const categorias = [
+    "Romance", "Ficção", "Não-Ficção", "Ficção Científica", "Mistério", "Fantasia",
+    "Autoajuda", "Biografia", "História", "Infantil", "Didático", "Ciência"
+  ];
+
   return (
     <footer className="bg-[#3E2723] text-white font-sans">
       <div className="flex flex-wrap justify-between px-6 py-8 gap-6">
@@ -34,20 +49,18 @@ export default function Footer() {
         </div>
         <div>
           <h4 className="text-lg font-semibold mb-2">Categorias</h4>
-          <ul className="grid grid-cols-2 gap-x-8 gap-y-1">
-            <li><a className="hover:underline cursor-pointer">Romance</a></li>
-            <li><a className="hover:underline cursor-pointer">Ficção</a></li>
-            <li><a className="hover:underline cursor-pointer">Não-Ficção</a></li>
-            <li><a className="hover:underline cursor-pointer">Ficção Científica</a></li>
-            <li><a className="hover:underline cursor-pointer">Mistério</a></li>
-            <li><a className="hover:underline cursor-pointer">Fantasia</a></li>
-            <li><a className="hover:underline cursor-pointer">Autoajuda</a></li>
-            <li><a className="hover:underline cursor-pointer">Biografia</a></li>
-            <li><a className="hover:underline cursor-pointer">História</a></li>
-            <li><a className="hover:underline cursor-pointer">Infantil</a></li>
-            <li><a className="hover:underline cursor-pointer">Didático</a></li>
-            <li><a className="hover:underline cursor-pointer">Ciência</a></li>
-          </ul>
+            <ul className="grid grid-cols-2 gap-x-8 gap-y-1">
+              {categorias.map((categ, index) => (
+                <li key={index}>
+                  <a
+                    className="hover:underline cursor-pointer"
+                    onClick={() => handleCategoriaClick(categ)}
+                  >
+                    {categ}
+                  </a>
+                </li>
+              ))}
+            </ul>
         </div>
         <div>
           <h4 className="text-lg font-semibold mb-2">Contato</h4>

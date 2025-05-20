@@ -1,3 +1,5 @@
+'use client'
+
 import PageWrapper from "@/components/PageWrapper"
 import matematica from "/public/matematica.jpg"
 import portugues from "/public/portugues.jpg"
@@ -16,12 +18,20 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/navigation';
+import { useRouter } from 'next/navigation';
 
 const categorias = [
 "Romance", "Ficção", "Não-Ficção", "Ficção Científica" , "Mistério", "Fantasia", "Autoajuda", "Biografia", "História", "Infantil",
 "Didático", "Ciência"]
 
 export default function Home(){
+
+  const router = useRouter();
+
+  const handleCategoriaClick = (categoria) => {
+    router.push(`/livros?q=${encodeURIComponent(categoria)}`);
+  };
+
   return (
       <PageWrapper>
       <div className="min-h-screen"> 
@@ -192,7 +202,9 @@ export default function Home(){
                     return (
                       <div key={index} className="w-[300px] h-[50px] bg-[#F5F5DC] rounded-md flex items-center justify-center
                       hover:bg-[#8B4513]/30 transition-colors cursor-pointer">
-                          <button className="text-[20px] font-bold cursor-pointer">{categ}</button>
+                          <button 
+                          onClick={() => handleCategoriaClick(categ)}
+                          className="text-[20px] font-bold cursor-pointer">{categ}</button>
                       </div>
                     )
                   })}
