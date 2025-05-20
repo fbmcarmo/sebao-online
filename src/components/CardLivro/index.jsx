@@ -15,7 +15,7 @@ export default function CardLivro({ banner, titulo, estado, autor, preco, catego
             backgroundColor:
               estado === "Bom" ? "#3CE64AFF" :
               estado === "Muito bom" ? "#CCCCCC" :
-              estado === "Ruim" ? "#E0142CFF" :
+              estado === "Aceitável" ? "#E0142CFF" :
               "#EB6D13FF",
           }}
           className="absolute top-2 left-2 px-2 py-0.5 rounded-xl"
@@ -25,7 +25,7 @@ export default function CardLivro({ banner, titulo, estado, autor, preco, catego
               color:
                 estado === "Bom" ? "#06380AFF" :
                 estado === "Muito bom" ? "#3C3B3BFF" :
-                estado === "Ruim" ? "#BD878EFF" :
+                estado === "Aceitável" ? "#BD878EFF" :
                 "#9F4A0DFF",
             }}
             className="text-sm font-semibold"

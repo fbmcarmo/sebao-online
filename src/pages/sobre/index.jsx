@@ -116,14 +116,14 @@ export default function Sobre(){
                         <div className="w-full lg:w-[50%] flex items-center justify-center">
                             <div className="w-[800px] h-[300px]">
                                 <iframe
-                                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15927.023353536233!2d-38.491012599999996!3d-3.7357129!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x7c74889fb9f1c69%3A0x1285fa3d4c8bb63d!2sDigital%20College%20Brasil!5e0!3m2!1spt-BR!2sbr!4v1715956019051!5m2!1spt-BR!2sbr"
+                                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3784.3604176636477!2d-38.512982125266895!3d-3.7326780962412194!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x7c74991204f2b1d%3A0x38e3b25bd5d38768!2sDigital%20College%20Fortaleza!5e1!3m2!1spt-BR!2sbr!4v1747689846786!5m2!1spt-BR!2sbr" 
                                     width="100%"
                                     height="100%"
-                                    style={{ border: 0 }}
+                                    style={{ border: 0 }} 
                                     allowFullScreen=""
                                     loading="lazy"
-                                    referrerPolicy="no-referrer-when-downgrade"
-                                ></iframe>
+                                    referrerPolicy="no-referrer-when-downgrade">
+                                </iframe>
                             </div>
                         </div>
                         <div className="w-full lg:w-[50%] flex flex-col items-center justify-center p-14">
