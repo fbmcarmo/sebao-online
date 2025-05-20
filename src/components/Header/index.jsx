@@ -6,19 +6,20 @@ import { FaRegUser } from "react-icons/fa";
 import { FaMagnifyingGlass } from "react-icons/fa6";
 import { FaShoppingCart } from "react-icons/fa";
 import { useState } from "react";
-import { useRouter } from 'next/navigation';
+import { useRouter } from 'next/router';
 
 export default function Header() {
 
     const [busca, setBusca] = useState('');
     const router = useRouter();
 
-  const handleSearch = (e) => {
-    e.preventDefault();
-    if (busca.trim()) {
-      router.push(`/procurar?q=${encodeURIComponent(busca.trim())}`);
-    }
-  };
+    const handleSearch = (e) => {
+        e.preventDefault(); 
+        if (!busca.trim()) return; 
+
+        
+        router.push(`/livros?q=${encodeURIComponent(busca)}`);
+    };
 
     return (
         <header className="w-full h-[70px] flex bg-[#F5F5DC] justify-between px-6 items-center">
@@ -40,22 +41,21 @@ export default function Header() {
                     <a className="text-[20px] text-black font-bold cursor-pointer hover:text-[#8B4513]" 
                     onClick={() => window.location.href = "/sobre"}>Sobre nós</a>
                     <a className="text-[20px] text-black font-bold cursor-pointer hover:text-[#8B4513]" 
-                    onClick={() => window.location.href = "/contatos"}>Contato</a>
+                    onClick={() => window.location.href = "/contato"}>Contato</a>
                 </nav>
-                <div className="w-[50%] h-[35px] flex items-center border-2 border-[#8B4513] rounded-[10px] px-3 bg-white">
-                    <form onSubmit={handleSearch} className="flex gap-2">
+                <div className="w-[50%] h-[40px] flex items-center border-2 border-[#8B4513] rounded-[10px] px-3 bg-white">
+                    <form onSubmit={handleSearch} className="flex items-center w-full">
                         <input
                             type="text"
                             placeholder="Digite título, autor ou categoria..."
                             value={busca}
                             onChange={(e) => setBusca(e.target.value)}
-                            className="px-4 py-2 rounded-md border border-[#ccc] focus:outline-none"
+                            className="flex-grow px-2 bg-transparent focus:outline-none text-[#3E2723]"
                         />
-                        <button 
+                        <button
                             type="submit"
-                            className="text-[#8B4513] text-[20px] cursor-pointer ml-2 transform active:scale-110 
-                            transition-all duration-150"
-                            onClick={() => window.location.href = "/procurar"}>
+                            className="text-[#8B4513] hover:text-[#A0522D] ml-2 transition-transform
+                             duration-150 cursor-pointer ease-in-out hover:scale-110 active:scale-125">
                             <FaMagnifyingGlass size={20} />
                         </button>
                     </form>

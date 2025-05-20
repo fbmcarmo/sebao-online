@@ -27,7 +27,7 @@ const livros = [
     id: 3,
     banner: inglesCard.src,
     titulo: "Inglês para falar em qualquer situação",
-    estado: "Ruim",
+    estado: "Aceitável",
     autor: "Chris Tunwell, Fernando Acuña",
     preco: "R$ 19,99",
     categoria: "Didático",
