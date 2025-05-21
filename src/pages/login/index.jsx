@@ -1,7 +1,30 @@
 import PageWrapper from "@/components/PageWrapper";
+import { useState } from "react";
 import { FaBookReader } from "react-icons/fa";
+import { toast } from 'react-toastify';
 
 export default function Login() {
+
+  const [user, setUser] = useState(""); 
+  const [pass, setPass] = useState(""); 
+
+  function clickLogin(event){
+
+    event.preventDefault()
+    
+    if(!user || !pass){
+      return toast.error("Preencha todos os campos");
+    }
+
+    if(user.length < 8 || pass.length < 8){
+      return toast.error("Usuário ou senha inválidos");
+    }
+
+      console.log(user);
+      console.log(pass);
+      return toast.success("Login realizado com sucesso");
+  }
+
   return (
     <PageWrapper showHeader={false} showFooter={false} showLogo={true}>
       <div className="w-full h-[80vh] flex items-center justify-center">
@@ -12,29 +35,41 @@ export default function Login() {
               Entrar no Sebão Online
             </h1>
           </div>
-          <label className="block text-sm font-bold text-gray-700">
+          <label htmlFor="user" className="block text-sm font-bold text-gray-700">
             E-mail
           </label>
           <input
+            onChange={
+              (event) => {setUser(event.target.value)}
+            }
             type="email"
+            id="user"
             className="w-full p-2 border rounded mb-4 focus:outline-none focus:ring-2 focus:ring-[#884211]"
             placeholder="seu@email.com"
             required
           />
-          <label className="block text-sm font-bold text-gray-700">Senha</label>
+          <label htmlFor="pass" className="block text-sm font-bold text-gray-700">Senha</label>
           <input
+            onChange={
+              (event) => {setPass(event.target.value)}
+            }
             type="password"
+            id="pass"
             placeholder="******"
             className="w-full p-2 border rounded focus:outline-none focus:ring-2 focus:ring-[#884211]"
             required
           />
           <div className="mt-6">
             <button
+              onClick={clickLogin}
               type="submit"
-              className="w-full bg-[#884211] text-white p-2 rounded houver:bg-[#6f350f] transition"
+              className="w-full bg-[#884211] text-white p-2 rounded houver:bg-[#6f350f] transition cursor-pointer"
             >
               Entrar
             </button>
+            <div className="w-full flex items-center justify-center text-black pt-4">
+              <a href="">Esqueceu a senha?</a>
+            </div>
           </div>
           <div className="mt-4">
             <p className="text-center text-[#976460]">
