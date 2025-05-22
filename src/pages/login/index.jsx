@@ -68,7 +68,9 @@ export default function Login() {
               Entrar
             </button>
             <div className="w-full flex items-center justify-center text-black pt-4">
-              <a href="">Esqueceu a senha?</a>
+            <a href="/recuperar-senha" className="text-sm text-[#884211] hover:underline">
+              Esqueceu a senha?
+            </a>
             </div>
           </div>
           <div className="mt-4">
