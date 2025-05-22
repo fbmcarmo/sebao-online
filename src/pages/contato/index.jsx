@@ -1,8 +1,11 @@
 import PageWrapper from "@/components/PageWrapper";
+
 import { useState } from "react";
 import { MdOutlineMail } from "react-icons/md";
 import { PiPhoneCallFill } from "react-icons/pi";
 import { IoLocationSharp } from "react-icons/io5";
+
+
 
 export default function Contato() {
   const [form, setForm] = useState({
@@ -156,10 +159,19 @@ export default function Contato() {
         >
           Enviar mensagem
         </button>
+        
+     <img
+  src="/faq-animate.svg"
+  alt="Animação de contato"
+  className="mx-auto mt-6 w-60 h-auto animate-pulse"
+/>
+
+
+
       </form>
 
-    
+
     </PageWrapper>
   );
- 
+
 }
