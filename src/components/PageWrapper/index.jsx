@@ -11,7 +11,7 @@ export default function PageWrapper({
   return (
     <div className="w-full h-full min-h-screen flex flex-col">
       {showLogo && (
-        <div className="w-full flex items-center justify-center gap-2 py-4">
+        <div className="w-full flex items-center justify-start gap-2 py-4 px-4">
           <FaBookReader color="#8B4513" size={40} />
           <p
             className="text-[20px] font-bold cursor-pointer whitespace-nowrap"

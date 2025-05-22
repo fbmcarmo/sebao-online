@@ -83,8 +83,8 @@ export default function Sobre() {
               O que nos diferencia
             </h1>
           </div>
-          <div className="w-full flex flex-col md:flex-row items-center justify-center gap-6">
-            <div className="w-full md:w-1/3 flex flex-col justify-center bg-white rounded-md p-6 sm:p-8 h-auto shadow">
+          <div className="w-full flex flex-col md:flex-row items-stretch justify-center gap-6">
+            <div className="w-full md:w-1/3 flex flex-col justify-start bg-white rounded-md p-6 sm:p-8 shadow flex-1">
               <h1 className="text-lg sm:text-xl md:text-2xl text-[#0C0A09] font-bold mb-2">
                 Inventário cuidadosamente selecionado
               </h1>
@@ -94,7 +94,7 @@ export default function Sobre() {
                 superiores.
               </p>
             </div>
-            <div className="w-full md:w-1/3 flex flex-col justify-center bg-white rounded-md p-6 sm:p-8 h-auto shadow">
+            <div className="w-full md:w-1/3 flex flex-col justify-start bg-white rounded-md p-6 sm:p-8 shadow flex-1">
               <h1 className="text-lg sm:text-xl md:text-2xl text-[#0C0A09] font-bold mb-2">
                 Equipe experiente
               </h1>
@@ -103,7 +103,7 @@ export default function Sobre() {
                 livros e que podem fornecer recomendações personalizadas.
               </p>
             </div>
-            <div className="w-full md:w-1/3 flex flex-col justify-center bg-white rounded-md p-6 sm:p-8 h-auto shadow">
+            <div className="w-full md:w-1/3 flex flex-col justify-start bg-white rounded-md p-6 sm:p-8 shadow flex-1">
               <h1 className="text-lg sm:text-xl md:text-2xl text-[#0C0A09] font-bold mb-2">
                 Foco na Comunidade
               </h1>
