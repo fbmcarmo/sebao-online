@@ -2,9 +2,37 @@ import PageWrapper from "@/components/PageWrapper";
 import { FaBookReader } from "react-icons/fa";
 import { FaEye, FaEyeSlash } from "react-icons/fa6";
 import { useState } from "react";
+import { toast } from 'react-toastify';
 
 export default function Login() {
+
   const [showPassword, setShowPassword] = useState(false);
+
+  const [senhaFocada, setSenhaFocada] = useState(false);
+
+  const [email, setEmail] = useState("");
+  const [pass, setPass] = useState(""); 
+
+  function clickLogin(event){
+
+    event.preventDefault();
+
+    if(!email || !pass){
+      return toast.error("Preencha todos os campos");
+    }
+
+    if(email.length < 8 || pass.length < 8){
+      return toast.error("Usuário ou senha inválidos");
+    }
+
+    if (pass.length > 8) {
+    return toast.error("A senha deve conter no máximo 8 caracteres");
+    }
+
+      console.log(email);
+      console.log(pass);
+      return toast.success("Login realizado com sucesso");
+  }
 
   return (
     <PageWrapper showHeader={false} showFooter={false} showLogo={true}>
@@ -27,6 +55,9 @@ export default function Login() {
               E-mail
             </label>
             <input
+              onChange={
+                (event) => {setEmail(event.target.value)}
+              }
               id="email"
               type="email"
               className="w-full p-2 border rounded focus:outline-none focus:ring-2 focus:ring-[#884211] text-sm"
@@ -44,9 +75,15 @@ export default function Login() {
             </label>
             <div className="relative flex items-center">
               <input
+                onChange={
+                  (event) => {setPass(event.target.value)}
+                }
+                onFocus={
+                  () => setSenhaFocada(true)
+                }
                 id="senha"
                 type={showPassword ? "text" : "password"}
-                placeholder="******"
+                placeholder="********"
                 className="w-full p-2 border rounded focus:outline-none focus:ring-2 focus:ring-[#884211] text-sm pr-10"
                 required
                 autoComplete="current-password"
@@ -61,6 +98,11 @@ export default function Login() {
                 {showPassword ? <FaEyeSlash /> : <FaEye />}
               </button>
             </div>
+            {senhaFocada && (
+            <small className="text-xs text-gray-500 mt-1">
+              A senha deve conter até 8 caracteres
+            </small>
+            )}
             <div className="flex">
               <button
                 type="button"
@@ -74,6 +116,7 @@ export default function Login() {
           <div className="mt-6">
             <button
               type="submit"
+              onClick={clickLogin}
               className="w-full bg-[#884211] text-white p-2 rounded hover:bg-[#6f350f] transition font-bold"
             >
               Entrar
