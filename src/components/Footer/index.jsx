@@ -42,7 +42,7 @@ export default function Footer() {
           <h4 className="text-lg font-semibold mb-2">Navegação</h4>
           <ul className="space-y-1">
             <li><a onClick={() => window.location.href = "/"} className="hover:underline cursor-pointer">Início</a></li>
-            <li><a onClick={() => window.location.href = "/livros"} className="hover:underline cursor-pointer">Procure livros</a></li>
+            <li><a onClick={() => window.location.href = "/livros"} className="hover:underline cursor-pointer">Livros</a></li>
             <li><a onClick={() => window.location.href = "/sobre"} className="hover:underline cursor-pointer">Sobre</a></li>
             <li><a onClick={() => window.location.href = "/contato"} className="hover:underline cursor-pointer">Contato</a></li>
           </ul>
