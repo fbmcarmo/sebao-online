@@ -40,7 +40,7 @@ export default function Cadastrar() {
         <div className="mt-6">
           <button
             type="submit"
-            className="w-full bg-[#884211] text-white p-2 rounded houver:bg-[#6f350f] transition"
+            className="w-full bg-[#884211] text-white p-2 rounded hover:bg-[#6f350f] transition"
           >
             Cadastrar
           </button>
