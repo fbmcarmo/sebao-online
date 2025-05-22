@@ -63,7 +63,7 @@ export default function Login() {
             <button
               onClick={clickLogin}
               type="submit"
-              className="w-full bg-[#884211] text-white p-2 rounded houver:bg-[#6f350f] transition cursor-pointer"
+              className="w-full bg-[#884211] text-white p-2 rounded hover:bg-[#6f350f] transition cursor-pointer"
             >
               Entrar
             </button>
