@@ -1,11 +1,8 @@
 import PageWrapper from "@/components/PageWrapper";
-
 import { useState } from "react";
 import { MdOutlineMail } from "react-icons/md";
 import { PiPhoneCallFill } from "react-icons/pi";
 import { IoLocationSharp } from "react-icons/io5";
-
-
 
 export default function Contato() {
   const [form, setForm] = useState({
@@ -14,6 +11,27 @@ export default function Contato() {
     assunto: "",
     mensagem: "",
   });
+
+  const [faqAberto, setFaqAberto] = useState(null);
+
+  const faqs = [
+    {
+      pergunta: "Você compra livros usados?",
+      resposta: "Sim! Estamos sempre buscando expandir nossa coleção. Visite nossa loja ou entre em contatto conosco para obter mais informações sobre como vender seus livros",
+    },
+    {
+      pergunta: "Quanto tempo demora o envio?",
+      resposta: "O envio padrão normalmente leva de 3 a 5 dias úteis. Opções de envio expresso estão disponíveis na finalização da compra",
+    },
+    {
+      pergunta: "Em que condições estão seus livros",
+      resposta: "Todos nossos livros são cuidadosamente inspecionados e classificados de acordo com sua condição: Novo, como Novo, Muito bom, Bom ou Aceitável",
+    },
+    {
+      pergunta: "Qual é sua politica de devolução",
+      resposta: "Aceitamos devolução em até 30 dias após a compra. Os livros devem estar nas mesmas condições em que foram enviados"
+    }
+  ];
 
   function handleChange(e) {
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -159,19 +177,36 @@ export default function Contato() {
         >
           Enviar mensagem
         </button>
-        
-     <img
-  src="/faq-animate.svg"
-  alt="Animação de contato"
-  className="mx-auto mt-6 w-60 h-auto animate-pulse"
-/>
 
-
-
+   
       </form>
 
+     <img
+          src="/faq-animate.svg"
+          alt="Animação de contato"
+          className="mx-auto mt-6 w-60 h-auto animate-pulse"
+        />
 
+      
+        <div className="mt-12 flex items-center justify-center flex-col">
+          <h2 className="text-xl font-semibold text-center mb-4">Perguntas Frequentes</h2>
+          {faqs.map((faq, index) => (
+            <div key={index} className="mb-4">
+              <button
+                type="button"
+                onClick={() => setFaqAberto(faqAberto === index ? null : index)}
+                className="text-center bg-amber-800 hover:bg-amber-700 text-white font-medium py-2 px-4 rounded"
+              >
+                {faq.pergunta}
+              </button>
+              {faqAberto === index && (
+                <div className="mt-2 bg-blue-50 text-gray-800 p-4 rounded shadow">
+                  {faq.resposta}
+                </div>
+              )}
+            </div>
+          ))}
+        </div>
     </PageWrapper>
   );
-
 }
