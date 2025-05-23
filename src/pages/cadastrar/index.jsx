@@ -144,7 +144,7 @@ export default function Cadastrar() {
             <div className="mt-6">
               <button
                 type="submit"
-                className="w-full bg-[#884211] text-white p-2 rounded hover:bg-[#6f350f] transition font-bold"
+                className="w-full bg-[#884211] text-white p-2 rounded hover:bg-[#6f350f] transition font-bold cursor-pointer"
               >
                 Cadastrar
               </button>
@@ -158,7 +158,7 @@ export default function Cadastrar() {
                   type="button"
                   onClick={() => (window.location.href = "/login")}
                 >
-                  Entre
+                  Entrar
                 </button>
               </p>
             </div>
