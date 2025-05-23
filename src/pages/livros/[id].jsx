@@ -41,7 +41,11 @@ const setFavoritosStorage = (favoritos) => {
 
 export default function LivroInfo() {
   const router = useRouter();
-  const { id } = router.query
+  if (!router?.query?.id) {
+    console.error("ID indefinido");
+    return;
+  }
+  const { id } = router?.query
 
   const livro = livros.find((l) => String(l.id) === String(id));
 
