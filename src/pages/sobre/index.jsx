@@ -1,6 +1,6 @@
 import PageWrapper from "@/components/PageWrapper";
 import livraria from "/public/livraria.jpg";
-import bruno from "/public/bruno.jpg";
+import bruno from "/public/Bruno.jpg";
 import davi from "/public/davi.jpg";
 import jardheson from "/public/jardheson.jpg";
 import alan from "/public/alan.jpg";
