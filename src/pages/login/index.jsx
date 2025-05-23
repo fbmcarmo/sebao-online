@@ -128,10 +128,10 @@ export default function Login() {
             </div>
           </div>
           <div className="mt-4">
-            <p className="text-center text-[#976460] text-sm">
+            <p className="text-center text-[#884211] text-sm">
               Não tem uma conta?
               <button
-                className="text-[#976460] font-bold cursor-pointer pl-2 hover:underline"
+                className="text-[#884211] font-bold cursor-pointer pl-2 hover:underline"
                 type="button"
                 onClick={() => (window.location.href = "/cadastrar")}
               >
