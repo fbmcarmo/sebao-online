@@ -1,4 +1,4 @@
-import { useRouter } from "next/navigation";
+import { useRouter } from "next/router";
 import livros from "@/data/livros";
 import PageWrapper from "@/components/PageWrapper";
 import {
