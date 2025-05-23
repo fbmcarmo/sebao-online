@@ -1,4 +1,4 @@
-import { useRouter, useParams } from "next/navigation";
+import { useRouter } from "next/navigation";
 import livros from "@/data/livros";
 import PageWrapper from "@/components/PageWrapper";
 import {
@@ -41,8 +41,7 @@ const setFavoritosStorage = (favoritos) => {
 
 export default function LivroInfo() {
   const router = useRouter();
-  const params = useParams();
-  const { id } = params;
+  const { id } = router.query
 
   const livro = livros.find((l) => String(l.id) === String(id));
 
