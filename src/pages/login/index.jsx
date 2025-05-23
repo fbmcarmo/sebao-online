@@ -106,7 +106,7 @@ export default function Login() {
             <div className="flex">
               <button
                 type="button"
-                className="text-xs text-[#884211] font-semibold mt-1 ml-auto hover:underline"
+                className="text-xs text-[#884211] font-semibold mt-1 ml-auto hover:underline cursor-pointer"
                 onClick={() => (window.location.href = "/esqueci-senha")}
               >
                 Esqueci a senha
@@ -117,7 +117,7 @@ export default function Login() {
             <button
               type="submit"
               onClick={clickLogin}
-              className="w-full bg-[#884211] text-white p-2 rounded hover:bg-[#6f350f] transition font-bold"
+              className="w-full bg-[#884211] text-white p-2 rounded hover:bg-[#6f350f] transition font-bold cursor-pointer"
             >
               Entrar
             </button>
