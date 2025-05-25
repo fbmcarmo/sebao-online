@@ -69,7 +69,7 @@ export default function Contato() {
           </div>
           <h3 className="font-semibold mb-1">Ligue para a gente</h3>
           <p className="text-sm text-gray-700">
-            Segunda a sexta: 09h - 17h
+            Segunda a sexta: 09h - 20h
             <br />
             <span className="text-yellow-800 font-medium">+55 (85) 99999-9999</span>
           </p>
