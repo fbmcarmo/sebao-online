@@ -3,6 +3,7 @@ import { useState } from "react";
 import { MdOutlineMail } from "react-icons/md";
 import { PiPhoneCallFill } from "react-icons/pi";
 import { IoLocationSharp } from "react-icons/io5";
+import faq from "/public/faq-animate.svg";
 
 export default function Contato() {
   const [form, setForm] = useState({
@@ -25,7 +26,7 @@ export default function Contato() {
     },
     {
       pergunta: "Em que condições estão seus livros?",
-      resposta: "Todos nossos livros são cuidadosamente inspecionados e classificados de acordo com sua condição: Novo, como Novo, Muito bom, Bom ou Aceitável",
+      resposta: "Todos nossos livros são cuidadosamente inspecionados e classificados de acordo com sua condição: Bom, Muito bom, Moderado ou Aceitável",
     },
     {
       pergunta: "Qual é sua politica de devolução?",
@@ -50,7 +51,6 @@ export default function Contato() {
           Tem alguma dúvida ou precisa de ajuda? Estamos aqui para te ajudar!
         </p>
       </div>
-
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12 px-4 md:px-16">
         <div className="bg-yellow-50 rounded-lg p-6 text-center shadow">
           <div className="flex justify-center mb-4 text-3xl text-yellow-600">
@@ -63,7 +63,6 @@ export default function Contato() {
             <span className="text-yellow-800 font-medium">contato@sebaoonline.com</span>
           </p>
         </div>
-
         <div className="bg-yellow-50 rounded-lg p-6 text-center shadow">
           <div className="flex justify-center mb-4 text-3xl text-yellow-600">
             <PiPhoneCallFill />
@@ -75,7 +74,6 @@ export default function Contato() {
             <span className="text-yellow-800 font-medium">+55 (85) 99999-9999</span>
           </p>
         </div>
-
         <div className="bg-yellow-50 rounded-lg p-6 text-center shadow">
           <div className="flex justify-center mb-4 text-3xl text-yellow-600">
             <IoLocationSharp />
@@ -85,12 +83,10 @@ export default function Contato() {
             Endereço: Av. Santos Dumont, 1510,
             <br />
             1° andar - Aldeota, Fortaleza - CE,
-
-Brasil, 60150-161
+            Brasil, 60150-161
           </p>
         </div>
       </div>
-
       <form
         onSubmit={handleSubmit}
         className="max-w-xl mx-auto bg-white rounded-lg shadow p-8 "
@@ -98,7 +94,6 @@ Brasil, 60150-161
         <h2 className="text-xl font-serif font-semibold text-center">
           Envie-nos uma mensagem
         </h2>
-
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
           <div>
             <label htmlFor="nome" className="block text-sm font-medium text-gray-700 mb-1">
@@ -110,7 +105,7 @@ Brasil, 60150-161
               type="text"
               value={form.nome}
               onChange={handleChange}
-              placeholder="Silvio Santos"
+              placeholder="Seu Nome"
               className="w-full border rounded p-2"
               required
             />
@@ -125,13 +120,12 @@ Brasil, 60150-161
               type="email"
               value={form.email}
               onChange={handleChange}
-              placeholder="gatinhodo@gmail.com"
+              placeholder="seu@email.com"
               className="w-full border rounded p-2"
               required
             />
           </div>
         </div>
-
         <div className="mb-4">
           <label className="block text-sm font-medium text-gray-700 mb-1">
             Assunto
@@ -158,7 +152,6 @@ Brasil, 60150-161
             ))}
           </div>
         </div>
-
         <div className="mb-6">
           <label htmlFor="mensagem" className="block text-sm font-medium text-gray-700 mb-1">
             Sua mensagem
@@ -173,43 +166,39 @@ Brasil, 60150-161
             required
           />
         </div>
-
         <button
           type="submit"
-          className="bg-amber-800 hover:bg-amber-700 text-white px-6 py-2 rounded font-medium mx-auto block"
+          className="bg-amber-800 hover:bg-amber-700 text-white px-6 py-2 rounded font-medium mx-auto block cursor-pointer"
         >
           Enviar mensagem
         </button>
-
-   
       </form>
-
-     <img
-          src="/faq-animate.svg"
-          alt="Animação de contato"
-          className="mx-auto mt-6 w-60 h-auto animate-pulse"
-        />
-
-      
+      <div className="bg-[#FAF8F5] max-w-4xl mx-auto px-4 mb-12">
+        <img
+              src={faq.src}
+              alt="Animação de contato"
+              className="mx-auto mt-6 w-60 h-auto animate-pulse"
+            />
         <div className="mt-12 flex items-center justify-center flex-col">
           <h2 className="text-xl font-semibold text-center mb-4">Perguntas Frequentes</h2>
           {faqs.map((faq, index) => (
-            <div key={index} className="mb-4 w-full max-w-md">
+            <div key={index} className="mb-4 w-full max-w-md flex flex-col items-center">
               <button
                 type="button"
                 onClick={() => setFaqAberto(faqAberto === index ? null : index)}
-                className="w-full text-center bg-amber-800 hover:bg-amber-700 text-white font-medium py-2 px-4 rounded"
+                className="w-64 text-center bg-amber-800 hover:bg-amber-700 text-white font-medium py-2 px-4 rounded"
               >
                 {faq.pergunta}
               </button>
               {faqAberto === index && (
-                <div className="mt-2 bg-blue-50 text-gray-800 p-4 rounded shadow">
+                <div className="mt-2 w-64 bg-blue-50 text-gray-800 p-4 rounded shadow text-center">
                   {faq.resposta}
                 </div>
               )}
             </div>
           ))}
         </div>
+      </div>  
     </PageWrapper>
   );
 }
