@@ -65,7 +65,7 @@ export default function Footer() {
         <div>
           <h4 className="text-lg font-semibold mb-2">Contato</h4>
           <p>Email: contato@sebaoonline.com</p>
-          <p>Telefone: (85) 99999-9999</p>
+          <p>Telefone: +55 (85) 99999-9999</p>
           <p>Endereço: Av. Santos Dumont, 1510,</p>
           <p>1° andar - Aldeota, Fortaleza - CE,</p>
           <p>Brasil, 60150-161</p>
