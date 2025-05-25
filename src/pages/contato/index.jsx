@@ -186,7 +186,7 @@ export default function Contato() {
               <button
                 type="button"
                 onClick={() => setFaqAberto(faqAberto === index ? null : index)}
-                className="w-74 text-center bg-amber-800 hover:bg-amber-700 text-white font-medium py-2 px-4 rounded"
+                className="w-84 text-center bg-amber-800 hover:bg-amber-700 text-white font-medium py-2 px-4 rounded"
               >
                 {faq.pergunta}
               </button>
