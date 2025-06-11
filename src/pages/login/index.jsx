@@ -2,36 +2,36 @@ import PageWrapper from "@/components/PageWrapper";
 import { FaBookReader } from "react-icons/fa";
 import { FaEye, FaEyeSlash } from "react-icons/fa6";
 import { useState } from "react";
-import { toast } from 'react-toastify';
+import { toast } from "react-toastify";
 
 export default function Login() {
-
   const [showPassword, setShowPassword] = useState(false);
 
   const [senhaFocada, setSenhaFocada] = useState(false);
 
   const [email, setEmail] = useState("");
-  const [pass, setPass] = useState(""); 
+  const [pass, setPass] = useState("");
+  const [showModal, setShowModal] = useState(false);
+  const [recoveryEmail, setRecoveryEmail] = useState("");
 
-  function clickLogin(event){
-
+  function clickLogin(event) {
     event.preventDefault();
 
-    if(!email || !pass){
+    if (!email || !pass) {
       return toast.error("Preencha todos os campos");
     }
 
-    if(email.length < 8 || pass.length < 8){
+    if (email.length < 8 || pass.length < 8) {
       return toast.error("Usuário ou senha inválidos");
     }
 
     if (pass.length > 8) {
-    return toast.error("A senha deve conter no máximo 8 caracteres");
+      return toast.error("A senha deve conter no máximo 8 caracteres");
     }
 
-      console.log(email);
-      console.log(pass);
-      return toast.success("Login realizado com sucesso");
+    console.log(email);
+    console.log(pass);
+    return toast.success("Login realizado com sucesso");
   }
 
   return (
@@ -55,9 +55,9 @@ export default function Login() {
               E-mail
             </label>
             <input
-              onChange={
-                (event) => {setEmail(event.target.value)}
-              }
+              onChange={(event) => {
+                setEmail(event.target.value);
+              }}
               id="email"
               type="email"
               className="w-full p-2 border rounded focus:outline-none focus:ring-2 focus:ring-[#884211] text-sm"
@@ -75,12 +75,10 @@ export default function Login() {
             </label>
             <div className="relative flex items-center">
               <input
-                onChange={
-                  (event) => {setPass(event.target.value)}
-                }
-                onFocus={
-                  () => setSenhaFocada(true)
-                }
+                onChange={(event) => {
+                  setPass(event.target.value);
+                }}
+                onFocus={() => setSenhaFocada(true)}
                 id="senha"
                 type={showPassword ? "text" : "password"}
                 placeholder="********"
@@ -99,15 +97,15 @@ export default function Login() {
               </button>
             </div>
             {senhaFocada && (
-            <small className="text-xs text-gray-500 mt-1">
-              A senha deve conter até 8 caracteres
-            </small>
+              <small className="text-xs text-gray-500 mt-1">
+                A senha deve conter até 8 caracteres
+              </small>
             )}
             <div className="flex">
               <button
                 type="button"
                 className="text-xs text-[#884211] font-semibold mt-1 ml-auto hover:underline cursor-pointer"
-                onClick={() => (window.location.href = "/esqueci-senha")}
+                onClick={() => setShowModal(true)}
               >
                 Esqueceu a senha?
               </button>
@@ -136,6 +134,38 @@ export default function Login() {
           </div>
         </form>
       </div>
+      {showModal && (
+        <div className="fixed inset-0 flex items-center justify-center bg-black/50 z-50">
+          <div className="bg-white p-4 rounded w-72 shadow relative">
+            <button
+              onClick={() => setShowModal(false)}
+              className="absolute top-2 right-3 text-xl text-gray-500"
+            ></button>
+            <h2 className="text-center text-[#884211] font-semibold mb-3">
+              Recupera senha
+              <input
+                type="email"
+                placeholder="Digite seu e-mail"
+                value={recoveryEmail}
+                onChange={(e) => setRecoveryEmail(e.target.value)}
+                className="w-full border rounded p-2 mb-3 text-sm"
+              />
+            </h2>
+            <button
+              onClick={() => {
+                if (!recoveryEmail) return toast.error("Digite seu e-mail");
+                if (!/\S+@\S+\.\S+/.test(recoveryEmail))
+                  return toast.error("e-mail inválido");
+                toast.success("E-mail de recuperação enviado");
+                setShowModal(false);
+              }}
+              className="w-full bg-[#884211] text-white rounded p-2 text-sm hover:bg-[#6f358f]"
+            >
+              Enviar
+            </button>
+          </div>
+        </div>
+      )}
     </PageWrapper>
   );
 }
