@@ -17,12 +17,25 @@ export default function Login() {
   function clickLogin(event) {
     event.preventDefault();
 
-    if (!email || !pass) {
-      return toast.error("Preencha todos os campos");
+    if (!email && !pass) {
+      toast.error("Preencha todos os campos");
+      return;
     }
 
-    if (email.length < 8 || pass.length < 8) {
-      return toast.error("Usuário ou senha inválidos");
+    if (!email) {
+      return toast.error("Preencha o campo de e-mail");
+    }
+
+    if (!pass) {
+      return toast.error("Preencha o campo de senha");
+    }
+
+    if (!/\S+@\S+\.\S+/.test(email)) {
+      return toast.error("E-mail inválido");
+    }
+
+    if (pass.length < 8) {
+      return toast.error("Senha curta (igual ou superor a 8 digitos");
     }
 
     if (pass.length > 8) {
