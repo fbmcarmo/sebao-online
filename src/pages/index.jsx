@@ -5,7 +5,12 @@ import historia from "/public/historia.jpg";
 import geografia from "/public/geografia.jpg";
 import ingles from "/public/ingles.jpg";
 import quimica from "/public/quimica.jpg";
-import { LuBookOpen, LuTruck, LuBadgePercent, LuBookCheck } from "react-icons/lu";
+import {
+  LuBookOpen,
+  LuTruck,
+  LuBadgePercent,
+  LuBookCheck,
+} from "react-icons/lu";
 import CardLivro from "@/components/CardLivro";
 import harryPotter from "/public/harryPotter.jpg";
 import milnovecentoseoitentaequatro from "/public/milnovecentoseoitentaequatro.jpg";
@@ -19,6 +24,7 @@ import "swiper/css/navigation";
 import { useRouter } from "next/navigation";
 import { FaShoppingCart } from "react-icons/fa";
 import { useState, useEffect, useRef } from "react";
+import { toast } from "react-toastify";
 
 const categorias = [
   "Romance",
@@ -140,6 +146,13 @@ export default function Home() {
     setMensagem(`"${livro.titulo}" adicionado ao carrinho!`);
     setTimeout(() => setMensagem(""), 2000);
   };
+
+  const [email, setEmail] = useState("");
+  function handleSubscribe(e) {
+    e.preventDefault();
+    toast.success("Email enviado com sucesso!");
+    setEmail("");
+  }
 
   return (
     <PageWrapper>
@@ -395,14 +408,24 @@ export default function Home() {
             novidades e recomendações de leitura
           </p>
           <div className="w-full max-w-md flex flex-col sm:flex-row items-center gap-2 mt-2">
-            <input
-              type="email"
-              placeholder="Seu endereço de e-mail"
-              className="w-full px-4 py-2 bg-white rounded-md border border-gray-300 focus:outline-none"
-            />
-            <button className="bg-[#f40d0d] text-white px-4 py-2 min-w-[130px] rounded-md hover:opacity-80 transition mt-2 sm:mt-0 cursor-pointer">
-              Inscreva-se
-            </button>
+            <form
+              onSubmit={handleSubscribe}
+              className="w-full max-w-md flex flex-col sm:flex-row items-center gap-2 mt-2"
+            >
+              <input
+                type="email"
+                placeholder="Seu endereço de e-mail"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                className="w-full px-4 py-2 bg-white rounded-md border border-gray-300 focus:outline-none"
+              />
+              <button
+                type="submit"
+                className="bg-[#f40d0d] text-white px-4 py-2 min-w-[130px] rounded-md hover:opacity-80 transition mt-2 sm:mt-0 cursor-pointer"
+              >
+                Inscreva-se
+              </button>
+            </form>
           </div>
         </section>
 
