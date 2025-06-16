@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const instance = axios.create({
-    baseURL: "http://localhost:4002"
+    baseURL: "https://api-sebao-online.onrender.com"
 })
 
 instance.interceptors.request.use((config) => {
