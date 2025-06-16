@@ -23,7 +23,7 @@ export default function CadastrarLivro(){
         }
 
         try {
-            await instance.post("/api/movies", {
+            await instance.post("/livros", {
                 titulo: titulo,
                 autor: autor,
                 preco: preco,
@@ -43,15 +43,15 @@ export default function CadastrarLivro(){
             setBanner("");
         } catch (error) {
             console.error(error)
-            toast.error("Erro ao cadastrar filme!")
+            toast.error("Erro ao cadastrar livro!")
         }
     }
 
     return (
         <PageWrapper showButton = {false}>
             <div className="w-full h-full py-[40px] px-[70px] flex flex-col">
-                <h1 className="text-[40px] font-bold text-[#9A86F4]">Adicione um novo filme</h1>
-                <p className="text-[20px] text-gray-500">Preencha o formulário abaixo para adicionar um novo filme à sua coleção</p>
+                <h1 className="text-[40px] font-bold text-[#9A86F4]">Adicione um novo livro</h1>
+                <p className="text-[20px] text-gray-500">Preencha o formulário abaixo para adicionar um novo livro</p>
                 <div className="w-full flex justify-center pt-[40px]">
                     <form 
                         onSubmit={handleSubmit}
@@ -66,9 +66,9 @@ export default function CadastrarLivro(){
                             }
                         />
                         <CustomInput 
-                            label="Diretor"
-                            value={diretor}
-                            placeholder="Digite o nome do diretor"
+                            label="Autor"
+                            value={autor}
+                            placeholder="Digite o nome do autor"
                             type="text"
                             onChange={
                                 (event) => setAutor(event.target.value)
@@ -77,9 +77,9 @@ export default function CadastrarLivro(){
                         <div className="w-full flex gap-4">
                             <div className="w-[50%]">
                                 <CustomInput 
-                                    label="Ano"
-                                    value={ano}
-                                    placeholder="Digite o ano de lançamento"
+                                    label="Preço"
+                                    value={preco}
+                                    placeholder="Digite o preço"
                                     type="number"
                                     onChange={
                                         (event) => setPreco(event.target.value)
@@ -88,11 +88,11 @@ export default function CadastrarLivro(){
                             </div>
                             <div className="w-[50%]">
                                 <CustomSelect 
-                                    value={genero}
+                                    value={categoria}
                                     onChange={
                                         (event) => setCategoria(event.target.value)
                                     }
-                                    label="Gênero"
+                                    label="Categoria"
                                     options={[
                                         "Ação", 
                                         "Comédia", 
@@ -107,11 +107,11 @@ export default function CadastrarLivro(){
                         <div className="w-[30%] items-center flex gap-2">
                             <div className="w-[70%]">
                                 <CustomInput
-                                    value={nota}
+                                    value={estado}
                                     onChange={
                                         (event) => setEstado(event.target.value)
                                     }
-                                    label="Nota"
+                                    label="Estado"
                                     placeholder="0"
                                     type="number"
                                 />
@@ -119,9 +119,9 @@ export default function CadastrarLivro(){
                             <p className="flex mt-8">0 / 10</p>    
                         </div>
                         <div className="w-full flex flex-col gap-2">
-                            <label className="text-[17px] font-bold">Sinopse</label>
+                            <label className="text-[17px] font-bold">Descricao</label>
                             <textarea 
-                                value={sinopse}
+                                value={descricao}
                                 onChange={
                                     (event) => setDescricao(event.target.value)
                                 }
