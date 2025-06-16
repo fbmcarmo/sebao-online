@@ -77,7 +77,8 @@ export default function Home() {
     async function getLivros(){
       try {
         const response = await instance.get("/livros")
-        setLivrosCarrossel(response.data)
+        const data = await response.data
+        setLivrosCarrossel(data)
     } catch(error) {
       console.error("Erro ao buscar livros:", error)
     }
@@ -104,6 +105,7 @@ export default function Home() {
   };
 
   const [email, setEmail] = useState("");
+  
   function handleSubscribe(e) {
     e.preventDefault();
     toast.success("Email enviado com sucesso!");

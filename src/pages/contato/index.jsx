@@ -4,6 +4,7 @@ import { MdOutlineMail } from "react-icons/md";
 import { PiPhoneCallFill } from "react-icons/pi";
 import { IoLocationSharp } from "react-icons/io5";
 import faq from "/public/faq-animate.svg";
+import { toast } from "react-toastify";
 
 export default function Contato() {
   const [form, setForm] = useState({
@@ -40,7 +41,7 @@ export default function Contato() {
 
   function handleSubmit(e) {
     e.preventDefault();
-    alert("Mensagem enviada!");
+    toast.success("Mensagem enviada!");
   }
 
   return (
