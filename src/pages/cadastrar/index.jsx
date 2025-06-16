@@ -2,11 +2,13 @@ import PageWrapper from "@/components/PageWrapper";
 import { FaBookReader, FaEye, FaEyeSlash } from "react-icons/fa";
 import { useState } from "react";
 import { toast } from 'react-toastify';
+import { useRouter } from 'next/router';
+import instance from "@/api/instance";
 
 export default function Cadastrar() {
+  const router = useRouter();
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirm, setShowConfirm] = useState(false);
-
   const [senhaFocada, setSenhaFocada] = useState(false);
 
   const [nome, setNome] = useState("");
@@ -14,7 +16,7 @@ export default function Cadastrar() {
   const [pass, setPass] = useState("");
   const [confirmPass, setConfirmPass] = useState("");
 
-  function clickLogin(event) {
+  async function clickCadastrar(event) {
     event.preventDefault();
 
     if (!nome || !email || !pass || !confirmPass) {
@@ -33,8 +35,19 @@ export default function Cadastrar() {
       return toast.error("As senhas não coincidem");
     }
 
-    toast.success("Cadastro realizado com sucesso");
-    console.log({ nome, email, pass });
+    try {
+      const response = await instance.post('/users', {
+        name: nome,
+        email: email,
+        password: pass,
+      });
+
+      toast.success("Cadastro realizado com sucesso!");
+      router.push('/login');
+    } catch (error) {
+      console.error("Erro ao cadastrar:", error);
+      toast.error("Erro ao cadastrar usuário. Verifique os dados ou tente novamente.");
+    }
   }
 
   return (
@@ -42,7 +55,7 @@ export default function Cadastrar() {
       <div className="w-full min-h-screen flex items-center justify-center px-2 py-8 sm:py-0 bg-[#f8f7f3]">
         <div className="flex flex-wrap gap-8 justify-center items-center w-full">
           <form
-            onSubmit={clickLogin}
+            onSubmit={clickCadastrar}
             className="bg-white p-4 sm:p-6 rounded flex flex-col gap-2 shadow-md w-full max-w-xs sm:max-w-sm md:max-w-md"
           >
             <h1 className="text-lg sm:text-xl font-bold mb-4 text-center text-[#884211]">

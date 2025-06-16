@@ -1,8 +1,8 @@
 import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import PageWrapper from "@/components/PageWrapper";
-import livros from "@/data/livros";
 import { FaShoppingCart, FaTrashAlt, FaTruck } from "react-icons/fa";
+import instance from "@/api/instance";
 
 const getCarrinhoStorage = () => {
   if (typeof window === "undefined") return [];
@@ -47,20 +47,38 @@ export default function Carrinho() {
 
   useEffect(() => {
     const livroTitulo = searchParams.get("livro");
-    if (livroTitulo) {
-      const livro = livros.find((l) => l.titulo === livroTitulo);
-      if (livro && !carrinho.some((item) => item.titulo === livro.titulo)) {
-        const novoCarrinho = [...carrinho, livro];
-        setCarrinho(novoCarrinho);
-        setQuantidades((prev) => ({
-          ...prev,
-          [livro.titulo]: 1,
-        }));
-        setMensagem(`"${livro.titulo}" adicionado ao carrinho!`);
+    if (!livroTitulo) return;
+
+    const fetchLivro = async () => {
+      try {
+        const response = await instance.get(`/livros?titulo=${encodeURIComponent(livroTitulo)}`);
+        const livro = response.data;
+
+        if (!livro || !livro.titulo) {
+          setMensagem("Livro não encontrado na API.");
+          setTimeout(() => setMensagem(""), 2500);
+          return;
+        }
+
+        if (!carrinho.some((item) => item.titulo === livro.titulo)) {
+          const novoCarrinho = [...carrinho, livro];
+          setCarrinho(novoCarrinho);
+          setQuantidades((prev) => ({
+            ...prev,
+            [livro.titulo]: 1,
+          }));
+          setMensagem(`"${livro.titulo}" adicionado ao carrinho!`);
+          setTimeout(() => setMensagem(""), 2500);
+        }
+      } catch (error) {
+        console.error("Erro ao buscar livro:", error);
+        setMensagem("Erro ao buscar o livro na API.");
         setTimeout(() => setMensagem(""), 2500);
       }
-    }
-  }, [searchParams]);
+    };
+
+    fetchLivro();
+  }, [searchParams, carrinho]);
 
   const removerDoCarrinho = (titulo) => {
     const novoCarrinho = carrinho.filter((item) => item.titulo !== titulo);
@@ -90,9 +108,10 @@ export default function Carrinho() {
   };
 
   const totalLivros = carrinho.reduce((acc, item) => {
-    const preco = parseFloat(
-      item.preco.replace(/[^\d,]/g, "").replace(",", ".")
-    );
+    const preco =
+      typeof item.preco === "string"
+        ? parseFloat(item.preco.replace(/[^\d,]/g, "").replace(",", "."))
+        : Number(item.preco);
     const qtd = quantidades[item.titulo] || 1;
     return acc + (isNaN(preco) ? 0 : preco * qtd);
   }, 0);

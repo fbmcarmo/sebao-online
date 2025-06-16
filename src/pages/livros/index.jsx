@@ -1,21 +1,9 @@
 import { useSearchParams, useRouter } from "next/navigation";
-import livros from "@/data/livros";
 import CardLivro from "@/components/CardLivro";
 import PageWrapper from "@/components/PageWrapper";
 import { useEffect, useState } from "react";
 import { FaSearch } from "react-icons/fa";
-
-const ordenar = (arr) =>
-  [...arr].filter(Boolean).sort((a, b) => a.localeCompare(b));
-
-const categoriasUnicas = ordenar([
-  ...new Set(livros.map((livro) => livro.categoria)),
-]);
-const estadosUnicos = ordenar([
-  ...new Set(livros.map((livro) => livro.estado)),
-]);
-const autoresUnicos = ordenar([...new Set(livros.map((livro) => livro.autor))]);
-const precosUnicos = ordenar([...new Set(livros.map((livro) => livro.preco))]);
+import instance from "@/api/instance";
 
 const getCarrinhoStorage = () => {
   if (typeof window === "undefined") return [];
@@ -36,6 +24,7 @@ export default function Livros() {
   const searchParams = useSearchParams();
   const router = useRouter();
 
+  const [livros, setLivros] = useState([]);
   const [termo, setTermo] = useState("");
   const [categoria, setCategoria] = useState("");
   const [estado, setEstado] = useState("");
@@ -48,12 +37,39 @@ export default function Livros() {
   const [mensagem, setMensagem] = useState("");
 
   useEffect(() => {
+    async function getLivros() {
+      try {
+        const response = await instance.get("/livros");
+        setLivros(response.data);
+      } catch (error) {
+        console.error("Erro ao buscar livros:", error);
+      }
+    }
+    getLivros();
+  }, []);
+
+  useEffect(() => {
     setCarrinho(getCarrinhoStorage());
   }, []);
 
   useEffect(() => {
     setCarrinhoStorage(carrinho);
   }, [carrinho]);
+
+  const ordenar = (arr) =>
+  [...arr]
+    .filter(Boolean)
+    .map((item) => String(item))
+    .sort((a, b) => a.localeCompare(b));
+
+  const categoriasUnicas = ordenar([
+  ...new Set(livros.map((livro) => livro.categoria)),
+  ]);
+  const estadosUnicos = ordenar([
+  ...new Set(livros.map((livro) => livro.estado)),
+  ]);
+  const autoresUnicos = ordenar([...new Set(livros.map((livro) => livro.autor))]);
+  const precosUnicos = ordenar([...new Set(livros.map((livro) => livro.preco))]);
 
   const adicionarAoCarrinho = (livro) => {
     let novoCarrinho = getCarrinhoStorage();

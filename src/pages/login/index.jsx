@@ -1,12 +1,12 @@
 import PageWrapper from "@/components/PageWrapper";
 import { FaBookReader } from "react-icons/fa";
 import { FaEye, FaEyeSlash } from "react-icons/fa6";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
+import instance from "@/api/instance";
 
 export default function Login() {
   const [showPassword, setShowPassword] = useState(false);
-
   const [senhaFocada, setSenhaFocada] = useState(false);
 
   const [email, setEmail] = useState("");
@@ -14,7 +14,15 @@ export default function Login() {
   const [showModal, setShowModal] = useState(false);
   const [recoveryEmail, setRecoveryEmail] = useState("");
 
-  function clickLogin(event) {
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+
+    if(token){
+      window.location.href = '/'
+    }
+  }, [])
+
+  async function clickLogin(event) {
     event.preventDefault();
 
     if (!email && !pass) {
@@ -42,9 +50,20 @@ export default function Login() {
       return toast.error("A senha deve conter no máximo 8 caracteres");
     }
 
-    console.log(email);
-    console.log(pass);
-    return toast.success("Login realizado com sucesso");
+    try {
+      const response = await instance.post('/login', {
+        email: email,
+        password: pass
+      })
+
+    await localStorage.setItem('token', response.data.token)
+
+    toast.success("Login realizado com sucesso")
+    window.location.href = '/'
+    } catch (error) {
+      console.log("Erro ao fazer login:", error)
+      toast.error("Erro ao fazer login")
+    }
   }
 
   return (

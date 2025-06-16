@@ -1,13 +1,8 @@
 import { useRouter } from "next/router";
-import livros from "@/data/livros";
 import PageWrapper from "@/components/PageWrapper";
-import {
-  FaArrowLeft,
-  FaShoppingCart,
-  FaHeart,
-  FaShareAlt,
-} from "react-icons/fa";
+import { FaArrowLeft, FaShoppingCart, FaHeart, FaShareAlt } from "react-icons/fa";
 import { useEffect, useState } from "react";
+import instance from "@/api/instance";
 
 const getCarrinhoStorage = () => {
   if (typeof window === "undefined") return [];
@@ -18,6 +13,7 @@ const getCarrinhoStorage = () => {
     return [];
   }
 };
+
 const setCarrinhoStorage = (carrinho) => {
   if (typeof window !== "undefined") {
     localStorage.setItem("carrinho", JSON.stringify(carrinho));
@@ -33,6 +29,7 @@ const getFavoritosStorage = () => {
     return [];
   }
 };
+
 const setFavoritosStorage = (favoritos) => {
   if (typeof window !== "undefined") {
     localStorage.setItem("favoritos", JSON.stringify(favoritos));
@@ -41,21 +38,43 @@ const setFavoritosStorage = (favoritos) => {
 
 export default function LivroInfo() {
   const router = useRouter();
-  if (!router?.query?.id) {
-    console.error("ID indefinido");
-    return;
-  }
-  const { id } = router?.query
+  const { id } = router.query;
 
-  const livro = livros.find((l) => String(l.id) === String(id));
-
+  const [livro, setLivro] = useState(null);
+  const [sugestoes, setSugestoes] = useState([]);
   const [carrinho, setCarrinho] = useState([]);
   const [favoritos, setFavoritos] = useState([]);
   const [copiado, setCopiado] = useState(false);
   const [showModal, setShowModal] = useState(false);
 
-  const jaNoCarrinho = carrinho.some((item) => item.titulo === livro?.titulo);
-  const jaFavorito = favoritos.some((item) => item.titulo === livro?.titulo);
+  const jaNoCarrinho = carrinho.some((item) => item?.id === livro?.id);
+  const jaFavorito = favoritos.some((item) => item?.id === livro?.id);
+
+  useEffect(() => {
+    if (!id) return;
+
+    const buscarLivro = async () => {
+      try {
+        const response = await instance.get(`/livros/${id}`);
+        setLivro(response.data);
+      } catch (error) {
+        console.error("Erro ao buscar livro:", error);
+      }
+    };
+
+    const buscarSugestoes = async () => {
+      try {
+        const response = await instance.get("/livros");
+        const outrosLivros = response.data.filter((l) => String(l.id) !== String(id));
+        setSugestoes(outrosLivros);
+      } catch (error) {
+        console.error("Erro ao buscar sugestões:", error);
+      }
+    };
+
+    buscarLivro();
+    buscarSugestoes();
+  }, [id]);
 
   useEffect(() => {
     setCarrinho(getCarrinhoStorage());
@@ -75,7 +94,7 @@ export default function LivroInfo() {
   const toggleFavorito = () => {
     let novosFavoritos;
     if (jaFavorito) {
-      novosFavoritos = favoritos.filter((item) => item.titulo !== livro.titulo);
+      novosFavoritos = favoritos.filter((item) => item.id !== livro.id);
     } else {
       novosFavoritos = [...favoritos, livro];
     }
@@ -97,9 +116,7 @@ export default function LivroInfo() {
     return (
       <PageWrapper>
         <div className="min-h-screen flex flex-col items-center justify-center bg-[#f8f7e8]">
-          <h1 className="text-2xl font-bold text-[#8B4513] mb-4">
-            Livro não encontrado
-          </h1>
+          <h1 className="text-2xl font-bold text-[#8B4513] mb-4">Livro não encontrado</h1>
           <button
             className="flex items-center gap-2 bg-[#8B4513] text-white px-6 py-2 rounded-lg font-semibold hover:bg-[#a05a2c] transition cursor-pointer"
             onClick={() => router.push("/livros")}
@@ -131,11 +148,6 @@ export default function LivroInfo() {
                     : "bg-[#f8f7e8] text-[#8B4513] border border-[#8B4513]"
                 } hover:brightness-110 cursor-pointer`}
                 onClick={toggleFavorito}
-                aria-label={
-                  jaFavorito
-                    ? "Remover dos favoritos"
-                    : "Adicionar aos favoritos"
-                }
               >
                 <FaHeart className={jaFavorito ? "text-red-500" : ""} />
                 {jaFavorito ? "Favorito" : "Favoritar"}
@@ -143,7 +155,6 @@ export default function LivroInfo() {
               <button
                 className="flex items-center gap-2 px-5 py-2 rounded-xl font-semibold bg-[#f8f7e8] text-[#8B4513] border border-[#8B4513] hover:bg-[#f3e7d3] transition text-lg cursor-pointer"
                 onClick={compartilhar}
-                aria-label="Compartilhar"
               >
                 <FaShareAlt />
                 {copiado ? "Link copiado!" : "Compartilhar"}
@@ -167,8 +178,7 @@ export default function LivroInfo() {
               </span>
               {livro.editora && (
                 <span className="text-sm md:text-base text-[#555] bg-[#f3e7d3] px-3 py-1 rounded-full shadow-sm">
-                  Editora:{" "}
-                  <span className="font-semibold">{livro.editora}</span>
+                  Editora: <span className="font-semibold">{livro.editora}</span>
                 </span>
               )}
               {livro.ano && (
@@ -183,8 +193,7 @@ export default function LivroInfo() {
               )}
               {livro.paginas && (
                 <span className="text-sm md:text-base text-[#555] bg-[#f3e7d3] px-3 py-1 rounded-full shadow-sm">
-                  Páginas:{" "}
-                  <span className="font-semibold">{livro.paginas}</span>
+                  Páginas: <span className="font-semibold">{livro.paginas}</span>
                 </span>
               )}
               {livro.idioma && (
@@ -194,8 +203,7 @@ export default function LivroInfo() {
               )}
               {livro.formato && (
                 <span className="text-sm md:text-base text-[#555] bg-[#f3e7d3] px-3 py-1 rounded-full shadow-sm">
-                  Formato:{" "}
-                  <span className="font-semibold">{livro.formato}</span>
+                  Formato: <span className="font-semibold">{livro.formato}</span>
                 </span>
               )}
             </div>
@@ -240,30 +248,23 @@ export default function LivroInfo() {
         </div>
 
         <div className="w-full max-w-4xl mt-12">
-          <h2 className="text-2xl font-bold text-[#8B4513] mb-6">
-            Veja também
-          </h2>
+          <h2 className="text-2xl font-bold text-[#8B4513] mb-6">Veja também</h2>
           <div className="flex flex-wrap gap-8 justify-center">
-            {livros
-              .filter((l) => l.id !== livro.id)
-              .slice(0, 3)
-              .map((sug) => (
-                <div
-                  key={sug.id}
-                  className="flex flex-col items-center bg-white rounded-2xl shadow-lg p-4 w-[200px] border border-[#e5e7eb] hover:shadow-2xl transition cursor-pointer"
-                  onClick={() => router.push(`/livros/${sug.id}`)}
-                >
-                  <img
-                    src={sug.banner}
-                    alt={sug.titulo}
-                    className="w-full h-36 object-cover rounded-xl mb-2 border"
-                  />
-                  <span className="font-bold text-[#3E2723] text-center">
-                    {sug.titulo}
-                  </span>
-                  <span className="text-xs text-[#8B4513]">{sug.autor}</span>
-                </div>
-              ))}
+            {sugestoes.slice(0, 3).map((sug) => (
+              <div
+                key={sug.id}
+                className="flex flex-col items-center bg-white rounded-2xl shadow-lg p-4 w-[200px] border border-[#e5e7eb] hover:shadow-2xl transition cursor-pointer"
+                onClick={() => router.push(`/livros/${sug.id}`)}
+              >
+                <img
+                  src={sug.banner}
+                  alt={sug.titulo}
+                  className="w-full h-36 object-cover rounded-xl mb-2 border"
+                />
+                <span className="font-bold text-[#3E2723] text-center">{sug.titulo}</span>
+                <span className="text-xs text-[#8B4513]">{sug.autor}</span>
+              </div>
+            ))}
           </div>
         </div>
 

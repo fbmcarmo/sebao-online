@@ -5,18 +5,8 @@ import historia from "/public/historia.jpg";
 import geografia from "/public/geografia.jpg";
 import ingles from "/public/ingles.jpg";
 import quimica from "/public/quimica.jpg";
-import {
-  LuBookOpen,
-  LuTruck,
-  LuBadgePercent,
-  LuBookCheck,
-} from "react-icons/lu";
+import { LuBookOpen, LuTruck, LuBadgePercent, LuBookCheck } from "react-icons/lu";
 import CardLivro from "@/components/CardLivro";
-import harryPotter from "/public/harryPotter.jpg";
-import milnovecentoseoitentaequatro from "/public/milnovecentoseoitentaequatro.jpg";
-import inglesCard from "/public/inglesCard.jpg";
-import quarentaEoitoLeisDoPoder from "/public/quarentaEoitoLeisDoPoder.jpg";
-import javascript from "/public/javascript.jpg";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper/modules";
 import "swiper/css";
@@ -25,6 +15,7 @@ import { useRouter } from "next/navigation";
 import { FaShoppingCart } from "react-icons/fa";
 import { useState, useEffect, useRef } from "react";
 import { toast } from "react-toastify";
+import instance from "@/api/instance";
 
 const categorias = [
   "Romance",
@@ -39,54 +30,6 @@ const categorias = [
   "Infantil",
   "Didático",
   "Ciência",
-];
-
-const livrosCarrossel = [
-  {
-    id: 1,
-    banner: harryPotter.src,
-    titulo: "Harry Potter e a pedra filosofal",
-    estado: "Bom",
-    autor: "J. K. Rowling",
-    preco: "R$ 20,00",
-    categoria: "Fantasia",
-  },
-  {
-    id: 2,
-    banner: milnovecentoseoitentaequatro.src,
-    titulo: "1984",
-    estado: "Muito bom",
-    autor: "George Orwell",
-    preco: "R$ 25,00",
-    categoria: "Ficção Científica",
-  },
-  {
-    id: 3,
-    banner: inglesCard.src,
-    titulo: "Inglês para falar em qualquer situação",
-    estado: "Aceitável",
-    autor: "Chris Tunwell, Fernando Acuña",
-    preco: "R$ 19,99",
-    categoria: "Didático",
-  },
-  {
-    id: 4,
-    banner: quarentaEoitoLeisDoPoder.src,
-    titulo: "As 48 leis do poder",
-    estado: "Moderado",
-    autor: "Robert Greene",
-    preco: "R$ 23,99",
-    categoria: "Autoajuda",
-  },
-  {
-    id: 5,
-    banner: javascript.src,
-    titulo: "JavaScript: O Guia Definitivo",
-    estado: "Bom",
-    autor: "David Flanagan",
-    preco: "R$ 9,99",
-    categoria: "Didático",
-  },
 ];
 
 const getCarrinhoStorage = () => {
@@ -107,6 +50,7 @@ const setCarrinhoStorage = (carrinho) => {
 export default function Home() {
   const router = useRouter();
   const [mensagem, setMensagem] = useState("");
+  const [livrosCarrossel, setLivrosCarrossel] = useState([]);
   const [carrinho, setCarrinho] = useState([]);
   const [showResumo, setShowResumo] = useState(false);
   const resumoRef = useRef(null);
@@ -128,6 +72,18 @@ export default function Home() {
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, [showResumo]);
+
+  useEffect(() => {
+    async function getLivros(){
+      try {
+        const response = await instance.get("/livros")
+        setLivrosCarrossel(response.data)
+    } catch(error) {
+      console.error("Erro ao buscar livros:", error)
+    }
+  }  
+    getLivros()
+  }, []);
 
   const handleCategoriaClick = (categoria) => {
     router.push(`/livros?q=${encodeURIComponent(categoria)}`);
