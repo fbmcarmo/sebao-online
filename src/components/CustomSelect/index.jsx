@@ -5,8 +5,8 @@ export default function CustomSelect({label, options, onChange, value}){
             <select 
                 value={value}
                 onChange={onChange}
-                className="w-full h-[45px] rounded-lg bg-[#141414] border border-[#ffffff1a]
-                 focus:border-purple-400 outline-none px-2">
+                className="w-full h-[45px] rounded-lg bg-[#FAF8F5] border border-[#ffffff1a]
+                 focus:border-[#A26A42] outline-none px-2">
                 <option value="">Selecione...</option>
                 {options.map((opcao) => {
                     return (

@@ -111,7 +111,12 @@ export default function Livros() {
       const matchCategoria = !cat || livro.categoria === cat;
       const matchEstado = !est || livro.estado === est;
       const matchAutor = !aut || livro.autor === aut;
-      const matchPreco = !prc || livro.preco === prc;
+
+      const parsePreco = (precoStr) => {
+      return parseFloat(String(precoStr).replace(/[^\d,]/g, "").replace(",", "."));
+      };
+
+      const matchPreco = !prc || parsePreco(livro.preco) === parsePreco(prc);
 
       return (
         matchBusca && matchCategoria && matchEstado && matchAutor && matchPreco
@@ -123,8 +128,8 @@ export default function Livros() {
         .slice()
         .sort(
           (a, b) =>
-            parseFloat(a.preco.replace(/[^\d,]/g, "").replace(",", ".")) -
-            parseFloat(b.preco.replace(/[^\d,]/g, "").replace(",", "."))
+            parseFloat(String(a.preco).replace(/[^\d,]/g, "").replace(",", ".")) -
+            parseFloat(String(b.preco).replace(/[^\d,]/g, "").replace(",", "."))
         );
     }
     if (ord === "preco-desc") {
@@ -132,8 +137,8 @@ export default function Livros() {
         .slice()
         .sort(
           (a, b) =>
-            parseFloat(b.preco.replace(/[^\d,]/g, "").replace(",", ".")) -
-            parseFloat(a.preco.replace(/[^\d,]/g, "").replace(",", "."))
+            parseFloat(String(b.preco).replace(/[^\d,]/g, "").replace(",", ".")) -
+            parseFloat(String(a.preco).replace(/[^\d,]/g, "").replace(",", "."))
         );
     }
     if (ord === "titulo-asc") {
@@ -148,7 +153,7 @@ export default function Livros() {
     }
 
     setResultados(filtrados);
-  }, [searchParams]);
+  }, [searchParams, livros]);
 
   const montarQuery = () => {
     const params = [];

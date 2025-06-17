@@ -24,13 +24,13 @@ export default function CadastrarLivro(){
 
         try {
             await instance.post("/livros", {
+                banner: banner,
                 titulo: titulo,
+                estado: estado,
                 autor: autor,
                 preco: preco,
                 categoria: categoria,
-                estado: estado,
-                descricao: descricao,
-                banner: banner
+                descricao: descricao
             })
 
             toast.success("Livro cadastrado com sucesso!")
@@ -48,18 +48,19 @@ export default function CadastrarLivro(){
     }
 
     return (
-        <PageWrapper showButton = {false}>
-            <div className="w-full h-full py-[40px] px-[70px] flex flex-col">
-                <h1 className="text-[40px] font-bold text-[#9A86F4]">Adicione um novo livro</h1>
-                <p className="text-[20px] text-gray-500">Preencha o formulário abaixo para adicionar um novo livro</p>
+        <PageWrapper>
+            <div className="w-full h-full py-[40px] px-[70px] flex flex-col items-center justify-center">
+                <h1 className="text-[40px] font-bold text-[#8B4513]">Adicione um novo livro</h1>
+                <p className="text-[20px] text-black">Preencha o formulário abaixo para adicionar um novo livro</p>
                 <div className="w-full flex justify-center pt-[40px]">
                     <form 
                         onSubmit={handleSubmit}
-                        className="w-[50%] h-auto min-h-[200px] bg-[#222222] rounded-2xl border border-[#3a364c] flex flex-col p-6 gap-4">
+                        className="w-[50%] h-auto min-h-[200px] bg-white rounded-2xl border
+                         border-[#3a364c] flex flex-col p-6 gap-4">
                         <CustomInput 
                             label="Título"
                             value={titulo}
-                            placeholder="Digite o título do filme"
+                            placeholder="Digite o título do livro"
                             type="text"
                             onChange={
                                 (event) => setTitulo(event.target.value)
@@ -94,29 +95,36 @@ export default function CadastrarLivro(){
                                     }
                                     label="Categoria"
                                     options={[
-                                        "Ação", 
-                                        "Comédia", 
-                                        "Drama",
-                                        "Terror",
+                                        "Romance",
+                                        "Ficção",
+                                        "Não-Ficção",
                                         "Ficção Científica",
-                                        "Romance"
+                                        "Mistério",
+                                        "Fantasia",
+                                        "Autoajuda",
+                                        "Biografia",
+                                        "História",
+                                        "Infantil",
+                                        "Didático",
+                                        "Ciência"
                                     ]}
                                 />
                             </div>
                         </div>
-                        <div className="w-[30%] items-center flex gap-2">
-                            <div className="w-[70%]">
-                                <CustomInput
-                                    value={estado}
-                                    onChange={
-                                        (event) => setEstado(event.target.value)
-                                    }
-                                    label="Estado"
-                                    placeholder="0"
-                                    type="number"
+                        <div className="w-full items-center flex gap-2">
+                            <div className="w-full">
+                                <CustomSelect
+                                value={estado}
+                                onChange={(event) => setEstado(event.target.value)}
+                                label="Estado de Conservação"
+                                options={[
+                                    "Bom",
+                                    "Muito Bom",
+                                    "Aceitável",
+                                    "Moderado"
+                                ]}
                                 />
-                            </div>
-                            <p className="flex mt-8">0 / 10</p>    
+                            </div>   
                         </div>
                         <div className="w-full flex flex-col gap-2">
                             <label className="text-[17px] font-bold">Descricao</label>
@@ -126,7 +134,7 @@ export default function CadastrarLivro(){
                                     (event) => setDescricao(event.target.value)
                                 }
                                 className="w-full h-[150px] min-h-[150px] max-h-[150px] rounded-lg border border-[#ffffff1a]
-                                 focus:border-purple-400 p-2 bg-[#141414] outline-none"
+                                 focus:border-[#A26A42] p-2 bg-[#FAF8F5] outline-none"
                             ></textarea>
                         </div>
                         <CustomInput 
@@ -139,14 +147,14 @@ export default function CadastrarLivro(){
                             type="text"
                         />
                         <div className="w-full flex justify-end gap-4">
-                            <button type="reset" className="w-[100px] h-[50px] rounded-md bg-[#141414] cursor-pointer 
-                            hover:bg-white/10 border-[#3a364c]">
+                            <button type="reset" className="w-[100px] h-[50px] rounded-md bg-[#FAF8F5] cursor-pointer 
+                            hover:bg-[#8B4513]/20 border-[#3a364c]">
                                 Cancelar
                             </button>
                             <button 
                                 type="submit"
-                                className="w-[130px] h-[50px] rounded-md bg-[#9A86F4] cursor-pointer font-bold
-                                hover:bg-[#9A86F4]/80"
+                                className="w-[130px] h-[50px] text-white rounded-md bg-[#8B4513] cursor-pointer font-bold
+                                hover:bg-[#8B4513]/80"
                             >
                                 Salvar Livro
                             </button>

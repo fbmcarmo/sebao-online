@@ -4,8 +4,8 @@ export default function CustomInput({label, placeholder, type, onChange, value})
             <label className="text-[17px] font-bold">{label}</label>
             <input 
                 value={value}
-                className="w-full h-[45px] bg-[#141414] rounded-lg pl-2 border
-                 border-[#ffffff1a] outline-none focus:border-purple-400"
+                className="w-full h-[45px] bg-[#FAF8F5] rounded-lg pl-2 border
+                 border-[#ffffff1a] outline-none focus:border-[#A26A42]"
                 type={type}
                 placeholder={placeholder}
                 onChange={onChange}

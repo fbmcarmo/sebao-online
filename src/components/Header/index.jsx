@@ -9,7 +9,19 @@ import { useRouter } from "next/router";
 export default function Header() {
   const [busca, setBusca] = useState("");
   const [qtdCarrinho, setQtdCarrinho] = useState(0);
+  const [isLogged, setIsLogged] = useState(false);
+  const [usuario, setUsuario] = useState("");
+  const [showDropdown, setShowDropdown] = useState(false);
   const router = useRouter();
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const token = localStorage.getItem("token");
+      const nomeUsuario = localStorage.getItem("usuario");
+      setIsLogged(!!token); 
+      setUsuario(nomeUsuario || "");
+    }
+  }, []);
 
   useEffect(() => {
     if (typeof window !== "undefined") {
@@ -51,6 +63,14 @@ export default function Header() {
     router.push(`/livros?q=${encodeURIComponent(busca)}`);
   };
 
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    localStorage.removeItem("usuario");
+    setIsLogged(false);
+    setShowDropdown(false);
+    router.push("/login");
+  };
+
   return (
     <header className="w-full flex flex-col md:flex-row bg-[#F5F5DC] items-center md:items-center justify-between px-2 sm:px-4 md:px-8 py-2 gap-4">
       <div className="flex items-center gap-2 w-full md:w-auto justify-center md:justify-start">
@@ -88,6 +108,14 @@ export default function Header() {
           >
             Contato
           </a>
+            {isLogged && (
+          <a
+            className="text-[16px] sm:text-[18px] md:text-[20px] text-black font-bold cursor-pointer hover:text-[#8B4513]"
+            onClick={() => (window.location.href = "/cadastrarLivro")}
+          >
+            Vender um Livro
+          </a>
+            )}
         </nav>
         <div className="w-full md:w-[250px] lg:w-[320px] h-[38px] flex items-center border-2 border-[#8B4513] rounded-[10px] px-2 bg-white mt-2 md:mt-0">
           <form onSubmit={handleSearch} className="flex items-center w-full">
@@ -120,22 +148,66 @@ export default function Header() {
             </span>
           )}
         </button>
-        <button
-          className="flex items-center gap-1 text-black text-[14px] sm:text-[16px] font-bold bg-[#FFFFFF] 
-                    border-[2px] rounded-[10px] cursor-pointer p-1 hover:shadow-lg hover:border-[#8B4513]"
-          onClick={() => (window.location.href = "/login")}
-        >
-          <CiLogin size={20} />
-          Entre
-        </button>
-        <button
-          className="flex items-center gap-1 border-0 bg-[#8B4513] text-white p-[5px] 
-                    text-[14px] sm:text-[16px] rounded-[10px] cursor-pointer whitespace-nowrap hover:shadow-lg hover:scale-105"
-          onClick={() => (window.location.href = "/cadastrar")}
-        >
-          <FaRegUser color="white" size={20} />
-          Cadastre-se
-        </button>
+        {!isLogged && (
+          <>
+            <button
+              className="flex items-center gap-1 text-black text-[14px] sm:text-[16px] font-bold bg-white border-2 rounded-[10px] cursor-pointer p-1 hover:shadow-lg hover:border-[#8B4513]"
+              onClick={() => router.push("/login")}
+            >
+              <CiLogin size={20} />
+              Entrar
+            </button>
+            <button
+              className="flex items-center gap-1 border-0 bg-[#8B4513] text-white p-[5px] text-[14px] sm:text-[16px] rounded-[10px] cursor-pointer whitespace-nowrap hover:shadow-lg hover:scale-105"
+              onClick={() => router.push("/cadastrar")}
+            >
+              <FaRegUser color="white" size={20} />
+              Cadastre-se
+            </button>
+          </>
+        )}
+        {isLogged && (
+          <div className="relative">
+            <button
+              onClick={() => setShowDropdown(!showDropdown)}
+              className="flex items-center gap-1 border-2 border-[#8B4513] text-[#8B4513] p-1 rounded-[10px] cursor-pointer hover:shadow-lg"
+            >
+              <FaRegUser size={20} />
+              Minha Conta
+            </button>
+
+            {showDropdown && (
+              <div className="absolute right-0 mt-2 w-48 bg-white border rounded shadow-lg z-50">
+                <div className="px-4 py-2 text-sm font-bold text-[#8B4513]">Olá, {usuario}</div>
+                <hr />
+                <button
+                  onClick={() => router.push("/perfil")}
+                  className="block w-full text-left px-4 py-2 hover:bg-[#f1f1f1] text-sm"
+                >
+                  Perfil
+                </button>
+                <button
+                  onClick={() => router.push("/meuslivros")}
+                  className="block w-full text-left px-4 py-2 hover:bg-[#f1f1f1] text-sm"
+                >
+                  Meus Livros
+                </button>
+                <button
+                  onClick={() => router.push("/cadastrarLivro")}
+                  className="block w-full text-left px-4 py-2 hover:bg-[#f1f1f1] text-sm"
+                >
+                  Vender um Livro
+                </button>
+                <button
+                  onClick={handleLogout}
+                  className="block w-full text-left px-4 py-2 hover:bg-[#f1f1f1] text-sm text-red-600"
+                >
+                  Logout
+                </button>
+              </div>
+            )}
+          </div>
+        )}
       </div>
     </header>
   );
