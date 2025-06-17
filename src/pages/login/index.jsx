@@ -57,6 +57,10 @@ export default function Login() {
       })
 
     await localStorage.setItem('token', response.data.token)
+    
+    if (response.data.usuario && response.data.usuario.nome) {
+    await localStorage.setItem('usuario', response.data.usuario.nome);
+    }
 
     toast.success("Login realizado com sucesso")
     window.location.href = '/'

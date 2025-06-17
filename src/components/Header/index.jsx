@@ -167,8 +167,6 @@ export default function Header() {
           </>
         )}
         {isLogged && (
-        <div className="flex items-center gap-2">
-          <span className="hidden md:inline text-[14px] font-semibold text-[#8B4513]">Olá, {usuario}</span>
           <div className="relative">
             <button
               onClick={() => setShowDropdown(!showDropdown)}
@@ -180,8 +178,9 @@ export default function Header() {
 
             {showDropdown && (
               <div className="absolute right-0 mt-2 w-48 bg-white border rounded shadow-lg z-50">
-                <div className="px-4 py-2 text-sm font-bold text-[#8B4513]">Olá, {usuario}</div>
-                <hr />
+                <div className="px-4 py-2 text-sm font-bold text-[#8B4513]">
+                  Olá, {usuario || 'Usuário'}
+                </div>
                 <button
                   onClick={() => router.push("/perfil")}
                   className="block w-full text-left px-4 py-2 hover:bg-[#f1f1f1] text-sm"
@@ -189,7 +188,7 @@ export default function Header() {
                   Perfil
                 </button>
                 <button
-                  onClick={() => router.push("/meuslivros")}
+                  onClick={() => router.push("/meusLivros")}
                   className="block w-full text-left px-4 py-2 hover:bg-[#f1f1f1] text-sm"
                 >
                   Meus Livros
@@ -209,7 +208,6 @@ export default function Header() {
               </div>
             )}
           </div>
-        </div>
       )}
       </div>
     </header>
