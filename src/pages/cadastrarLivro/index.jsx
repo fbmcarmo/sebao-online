@@ -5,7 +5,7 @@ import PageWrapper from "@/components/PageWrapper";
 import { useState } from "react";
 import { toast } from "react-toastify";
 
-export default function CadastrarLivro(){
+export default function CadastrarLivro() {
     const [titulo, setTitulo] = useState("");
     const [autor, setAutor] = useState("");
     const [preco, setPreco] = useState(0);
@@ -14,26 +14,26 @@ export default function CadastrarLivro(){
     const [descricao, setDescricao] = useState("");
     const [banner, setBanner] = useState("");
 
-    async function handleSubmit(event){
+    async function handleSubmit(event) {
         event.preventDefault();
 
-        if(!titulo || !autor || !preco || !categoria || !estado || !descricao || !banner){
-            toast.error("Preencha todos os campos!")
+        if (!titulo || !autor || !preco || !categoria || !estado || !descricao || !banner) {
+            toast.error("Preencha todos os campos!");
             return;
         }
 
         try {
             await instance.post("/livros", {
-                banner: banner,
-                titulo: titulo,
-                estado: estado,
-                autor: autor,
-                preco: preco,
-                categoria: categoria,
-                descricao: descricao
-            })
+                banner,
+                titulo,
+                estado,
+                autor,
+                preco,
+                categoria,
+                descricao,
+            });
 
-            toast.success("Livro cadastrado com sucesso!")
+            toast.success("Livro cadastrado com sucesso!");
             setTitulo("");
             setAutor("");
             setPreco(0);
@@ -42,57 +42,57 @@ export default function CadastrarLivro(){
             setDescricao("");
             setBanner("");
         } catch (error) {
-            console.error(error)
-            toast.error("Erro ao cadastrar livro!")
+            console.error(error);
+            toast.error("Erro ao cadastrar livro!");
         }
     }
 
     return (
         <PageWrapper>
-            <div className="w-full h-full py-[40px] px-[70px] flex flex-col items-center justify-center">
-                <h1 className="text-[40px] font-bold text-[#8B4513]">Adicione um novo livro</h1>
-                <p className="text-[20px] text-black">Preencha o formulário abaixo para adicionar um novo livro</p>
-                <div className="w-full flex justify-center pt-[40px]">
-                    <form 
+            <div className="w-full h-full py-10 px-4 sm:px-8 md:px-10 lg:px-[70px] flex flex-col items-center justify-center">
+                <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-[#8B4513] text-center">
+                    Adicione um novo livro
+                </h1>
+                <p className="text-base sm:text-lg md:text-xl text-black text-center mt-2">
+                    Preencha o formulário abaixo para adicionar um novo livro
+                </p>
+
+                <div className="w-full flex justify-center pt-8">
+                    <form
                         onSubmit={handleSubmit}
-                        className="w-[50%] h-auto min-h-[200px] bg-white rounded-2xl border
-                         border-[#3a364c] flex flex-col p-6 gap-4">
-                        <CustomInput 
+                        className="w-full sm:w-[80%] md:w-[70%] lg:w-[50%] max-w-[600px] h-auto bg-white rounded-2xl
+                         border border-[#3a364c] flex flex-col p-4 sm:p-6 gap-4"
+                    >
+                        <CustomInput
                             label="Título"
                             value={titulo}
                             placeholder="Digite o título do livro"
                             type="text"
-                            onChange={
-                                (event) => setTitulo(event.target.value)
-                            }
+                            onChange={(event) => setTitulo(event.target.value)}
                         />
-                        <CustomInput 
+
+                        <CustomInput
                             label="Autor"
                             value={autor}
                             placeholder="Digite o nome do autor"
                             type="text"
-                            onChange={
-                                (event) => setAutor(event.target.value)
-                            }
+                            onChange={(event) => setAutor(event.target.value)}
                         />
-                        <div className="w-full flex gap-4">
-                            <div className="w-[50%]">
-                                <CustomInput 
+
+                        <div className="w-full flex flex-col sm:flex-row gap-4">
+                            <div className="w-full sm:w-1/2">
+                                <CustomInput
                                     label="Preço"
                                     value={preco}
                                     placeholder="Digite o preço"
                                     type="number"
-                                    onChange={
-                                        (event) => setPreco(event.target.value)
-                                    }
+                                    onChange={(event) => setPreco(event.target.value)}
                                 />
                             </div>
-                            <div className="w-[50%]">
-                                <CustomSelect 
+                            <div className="w-full sm:w-1/2">
+                                <CustomSelect
                                     value={categoria}
-                                    onChange={
-                                        (event) => setCategoria(event.target.value)
-                                    }
+                                    onChange={(event) => setCategoria(event.target.value)}
                                     label="Categoria"
                                     options={[
                                         "Romance",
@@ -106,55 +106,49 @@ export default function CadastrarLivro(){
                                         "História",
                                         "Infantil",
                                         "Didático",
-                                        "Ciência"
+                                        "Ciência",
                                     ]}
                                 />
                             </div>
                         </div>
-                        <div className="w-full items-center flex gap-2">
-                            <div className="w-full">
-                                <CustomSelect
-                                value={estado}
-                                onChange={(event) => setEstado(event.target.value)}
-                                label="Estado de Conservação"
-                                options={[
-                                    "Bom",
-                                    "Muito Bom",
-                                    "Aceitável",
-                                    "Moderado"
-                                ]}
-                                />
-                            </div>   
-                        </div>
+
+                        <CustomSelect
+                            value={estado}
+                            onChange={(event) => setEstado(event.target.value)}
+                            label="Estado de Conservação"
+                            options={["Bom", "Muito Bom", "Aceitável", "Moderado"]}
+                        />
+
                         <div className="w-full flex flex-col gap-2">
-                            <label className="text-[17px] font-bold">Descricao</label>
-                            <textarea 
+                            <label className="text-base font-bold">Descrição</label>
+                            <textarea
                                 value={descricao}
-                                onChange={
-                                    (event) => setDescricao(event.target.value)
-                                }
-                                className="w-full h-[150px] min-h-[150px] max-h-[150px] rounded-lg border border-[#ffffff1a]
-                                 focus:border-[#A26A42] p-2 bg-[#FAF8F5] outline-none"
+                                onChange={(event) => setDescricao(event.target.value)}
+                                className="w-full h-[150px] rounded-lg border border-[#ffffff1a]
+                                 focus:border-[#A26A42] p-2 bg-[#FAF8F5] outline-none resize-none"
                             ></textarea>
                         </div>
-                        <CustomInput 
+
+                        <CustomInput
                             value={banner}
-                            onChange={
-                                (event) => setBanner(event.target.value)
-                            }
+                            onChange={(event) => setBanner(event.target.value)}
                             label="Banner"
                             placeholder="URL da imagem"
                             type="text"
                         />
-                        <div className="w-full flex justify-end gap-4">
-                            <button type="reset" className="w-[100px] h-[50px] rounded-md bg-[#FAF8F5] cursor-pointer 
-                            hover:bg-[#8B4513]/20 border-[#3a364c]">
+
+                        <div className="w-full flex flex-col sm:flex-row justify-end gap-4 mt-2">
+                            <button
+                                type="reset"
+                                className="w-full sm:w-[100px] h-[45px] rounded-md bg-[#FAF8F5]
+                                 hover:bg-[#8B4513]/20 border border-[#3a364c] text-black"
+                            >
                                 Cancelar
                             </button>
-                            <button 
+                            <button
                                 type="submit"
-                                className="w-[130px] h-[50px] text-white rounded-md bg-[#8B4513] cursor-pointer font-bold
-                                hover:bg-[#8B4513]/80"
+                                className="w-full sm:w-[130px] h-[45px] text-white rounded-md
+                                 bg-[#8B4513] cursor-pointer font-bold hover:bg-[#8B4513]/80"
                             >
                                 Salvar Livro
                             </button>
@@ -163,5 +157,5 @@ export default function CadastrarLivro(){
                 </div>
             </div>
         </PageWrapper>
-    )
+    );
 }
