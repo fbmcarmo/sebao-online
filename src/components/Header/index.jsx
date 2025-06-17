@@ -167,6 +167,8 @@ export default function Header() {
           </>
         )}
         {isLogged && (
+        <div className="flex items-center gap-2">
+          <span className="hidden md:inline text-[14px] font-semibold text-[#8B4513]">Olá, {usuario}</span>
           <div className="relative">
             <button
               onClick={() => setShowDropdown(!showDropdown)}
@@ -207,7 +209,8 @@ export default function Header() {
               </div>
             )}
           </div>
-        )}
+        </div>
+      )}
       </div>
     </header>
   );
