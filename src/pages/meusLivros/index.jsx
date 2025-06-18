@@ -32,7 +32,7 @@ export default function MeusLivros() {
     const idUser = localStorage.getItem("userId");
 
     try {
-      const response = await instance.get(`/livros/${idUser}`);
+      const response = await instance.get(`/livros`);
       setLivros(response.data);
     } catch (error) {
       console.error("Erro ao buscar livros:", error);
