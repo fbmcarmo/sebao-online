@@ -16,6 +16,7 @@ import { FaShoppingCart } from "react-icons/fa";
 import { useState, useEffect, useRef } from "react";
 import { toast } from "react-toastify";
 import instance from "@/api/instance";
+import { jwtDecode } from "jwt-decode";
 
 const categorias = [
   "Romance",
@@ -85,6 +86,17 @@ export default function Home() {
   }  
     getLivros()
   }, []);
+
+    useEffect(() => {
+    const token = localStorage.getItem("token"); 
+
+    if (token) {
+      const decoded = jwtDecode(token);
+      const userId = decoded.id; 
+      localStorage.setItem("userId", userId);
+    }
+  }, []);
+
 
   const handleCategoriaClick = (categoria) => {
     router.push(`/livros?q=${encodeURIComponent(categoria)}`);

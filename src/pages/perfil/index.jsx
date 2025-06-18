@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import instance from '@/api/instance';
 import { toast } from 'react-toastify';
+import PageWrapper from '@/components/PageWrapper';
 
 export default function Perfil() {
   const [usuario, setUsuario] = useState({ nome: '', email: '' });
@@ -82,6 +83,7 @@ export default function Perfil() {
   if (loading) return <p>Carregando...</p>;
 
   return (
+    <PageWrapper>
     <div className="max-w-xl mx-auto p-4">
       <h1 className="text-2xl font-bold mb-4 text-[#8B4513]">Meu Perfil</h1>
 
@@ -119,5 +121,6 @@ export default function Perfil() {
         Excluir Conta
       </button>
     </div>
+    </PageWrapper>
   );
 }
