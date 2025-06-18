@@ -5,6 +5,8 @@ import { FaMagnifyingGlass } from "react-icons/fa6";
 import { FaShoppingCart } from "react-icons/fa";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
+import { toast } from "react-toastify";
+import instance from "@/api/instance";
 
 export default function Header() {
   const [busca, setBusca] = useState("");
@@ -17,11 +19,28 @@ export default function Header() {
   useEffect(() => {
     if (typeof window !== "undefined") {
       const token = localStorage.getItem("token");
-      const nomeUsuario = localStorage.getItem("usuario");
       setIsLogged(!!token); 
-      setUsuario(nomeUsuario || "");
     }
+
+    async function getUserById() {
+      const token = localStorage.getItem("token");
+      const userId = localStorage.getItem("userId");
+
+      try {
+        const response = await instance.get(`/users/${userId}`, {
+          headers: { Authorization: `Bearer ${token}` },
+        });
+        setUsuario(response.data.name);
+      } catch (error) {
+        toast.error('Erro ao carregar perfil');
+        console.error(error);
+      }
+  }
+    getUserById()
+
   }, []);
+
+   
 
   useEffect(() => {
     if (typeof window !== "undefined") {

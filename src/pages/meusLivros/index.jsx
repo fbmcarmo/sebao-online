@@ -1,83 +1,106 @@
-import PageWrapper from "@/components/PageWrapper"
-import { useRouter } from "next/router"
-import { LuArrowLeft } from "react-icons/lu"
-import { PiNotePencil } from "react-icons/pi"
-import { FiTrash2 } from "react-icons/fi";
+import PageWrapper from "@/components/PageWrapper";
+import CardLivro from "@/components/CardLivro";
 import { useEffect, useState } from "react";
 import instance from "@/api/instance";
+import { useRouter } from "next/router";
+import { PiNotePencil } from "react-icons/pi";
+import { FiTrash2 } from "react-icons/fi";
+import { LuRefreshCcw } from "react-icons/lu";
+import { toast } from "react-toastify";
 
-export default function MeusLivros(){
-    const router = useRouter()
-    const { id } = router.query || "0"
-
-    const [livro, setLivro] = useState({})
+export default function MeusLivros() {
+  const router = useRouter();
+  const [livros, setLivros] = useState([]);
+  const [usuarioId, setUsuarioId] = useState(null);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    async function getLivrosById(){
-      const response = await instance.get(`/livros/${id}`)
-      setLivro(response.data)
-      console.log(livro)
+    const token = localStorage.getItem("token");
+    const idUser = localStorage.getItem("userId");
+
+    if (!token || !idUser) {
+      router.push("/login");
+      return;
     }
 
-    if(id){
-        getLivrosById()
-    }
-
+    setUsuarioId(idUser);
+    buscarLivros();
   }, []);
 
-    return (
-        <PageWrapper>
-            <div className="w-full h-full min-h-sreen flex flex-col px-[350px] pt-12 items-start">
-                <button 
-                    onClick={() => router.back()}
-                    className="px-5 py-2 text-[#8a898c] gap-2 flex items-center
-                 justify-center rounded-lg hover:bg-[#27282B] hover:text-[#8F7BD8]">
-                    <LuArrowLeft />
-                    <p>Voltar para a lista de livros</p>
-                </button>
-                <div className="w-full min-h-[90vh] flex">
-                    <div className="w-[40%] h-full flex flex-col">
-                        <div className="w-full h-[90%]">
-                            <img
-                                className="w-full h-full rounded-lg object-cover"
-                                src={livro.banner}
-                                alt={livro.titulo}
-                            />
-                        </div>
-                        <div className="w-full flex h-[10%] pt-4 justify-between">
-                            <button className="w-[46%] h-full border border-[#9b87f533]
-                             rounded-md text-[#9b87f5] hover:bg-[#9b87f5]/20 flex items-center justify-center gap-2 py-2">
-                                <PiNotePencil size={20} /> Editar livro</button>
-                            <button className="w-[46%] h-full border border-[#ef444433]
-                             text-[#ef4444] hover:bg-[#ef4444]/20 rounded-md flex items-center justify-center gap-2 py-2">
-                              <FiTrash2 size={20} />  Excluir livro
-                            </button>
-                        </div>
-                    </div>
-                     <div className="w-[60%] pl-4 h-full flex flex-col">
-                        <div className="w-full flex gap-2 items-baseline">
-                            <h1 className="text-[35px] text-[#9B87F5] font-bold">{livro.titulo}</h1>
-                            <p className="text-[#8a898c] font-semibold text-[17px]">{livro.preco}</p>
-                        </div>
-                        <div className="w-full gap-4 flex">
-                            <div className="py-1 px-4 rounded-2xl bg-[#4ade80]/20 text-[#4ade80]">
-                                <p className="text-[17px]">{livro.estado}/10</p>
-                            </div>
-                            <div className="py-1 px-4 rounded-2xl bg-[#9b87f5]/20 text-[#9b87f5]">
-                                <p className="text-[17px]">{livro.categoria}</p>
-                            </div>
-                        </div>
-                        <div className="w-full flex flex-col mt-8">
-                            <h4 className="font-bold text-[20px]">Autor</h4>
-                            <p className="text-[#8a898c]">{livro.autor}</p>
-                        </div>
-                        <div className="w-full flex flex-col mt-8">
-                            <h4 className="font-bold text-[20px]">Descrição</h4>
-                            <p className="text-[#8a898c]">{livro.descricao}</p>
-                        </div>
-                    </div>
+  async function buscarLivros() {
+    setLoading(true);
+    const idUser = localStorage.getItem("userId");
+
+    try {
+      const response = await instance.get(`/livros/${idUser}`);
+      setLivros(response.data);
+    } catch (error) {
+      console.error("Erro ao buscar livros:", error);
+      toast.error("Erro ao carregar seus livros.");
+    } finally {
+      setLoading(false);
+    }
+  }
+
+  async function deletarLivro(idLivro) {
+    try {
+      await instance.delete(`/livros/${idLivro}`);
+      toast.success("Livro excluído com sucesso!");
+      buscarLivros();
+    } catch (error) {
+      console.error("Erro ao excluir livro:", error);
+      toast.error("Erro ao excluir o livro.");
+    }
+  }
+
+  return (
+    <PageWrapper>
+      <div className="w-full min-h-screen py-10 px-6 flex flex-col items-center">
+        <h1 className="text-3xl font-bold mb-6 text-[#8B4513]">Meus Livros</h1>
+
+        <button
+          onClick={() => buscarLivros(usuarioId)}
+          disabled={loading}
+          className="mb-6 flex items-center gap-2 px-4 py-2 bg-[#8B4513] text-white rounded-lg hover:bg-[#6f3913] transition disabled:opacity-50"
+        >
+          <LuRefreshCcw size={18} />
+          Atualizar lista
+        </button>
+
+        <div className="w-full max-w-6xl grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+          {livros.length === 0 ? (
+            <p className="text-gray-500">Você ainda não cadastrou nenhum livro.</p>
+          ) : (
+            livros.map((livro) => (
+              <div key={livro.id} className="relative">
+                <CardLivro
+                  banner={livro.banner}
+                  titulo={livro.titulo}
+                  estado={livro.estado}
+                  autor={livro.autor}
+                  preco={livro.preco}
+                  categoria={livro.categoria}
+                />
+
+                <div className="absolute top-2 right-2 flex gap-2">
+                  <button
+                    onClick={() => router.push(`/editar-livro/${livro.id}`)}
+                    className="p-2 bg-[#9B87F5]/20 text-[#9B87F5] rounded-full hover:bg-[#9B87F5]/40"
+                  >
+                    <PiNotePencil size={18} />
+                  </button>
+                  <button
+                    onClick={() => deletarLivro(livro.id)}
+                    className="p-2 bg-[#ef4444]/20 text-[#ef4444] rounded-full hover:bg-[#ef4444]/40"
+                  >
+                    <FiTrash2 size={18} />
+                  </button>
                 </div>
-            </div>
-        </PageWrapper>
-    )
+              </div>
+            ))
+          )}
+        </div>
+      </div>
+    </PageWrapper>
+  );
 }

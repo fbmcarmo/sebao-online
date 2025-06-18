@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import PageWrapper from "@/components/PageWrapper";
 import { FaShoppingCart, FaTrashAlt, FaTruck } from "react-icons/fa";
 import instance from "@/api/instance";
+import jwtDecode from "jwt-decode";
 
 const getCarrinhoStorage = () => {
   if (typeof window === "undefined") return [];
@@ -17,6 +18,16 @@ const setCarrinhoStorage = (carrinho) => {
   if (typeof window !== "undefined") {
     localStorage.setItem("carrinho", JSON.stringify(carrinho));
   }
+};
+
+const isLogado = () => {
+  if (typeof window !== "undefined") {
+    const token = localStorage.getItem("token");
+    if (!token) {
+     window.location.href = "/login"
+    }
+  }
+  return false;
 };
 
 export default function Carrinho() {
@@ -166,12 +177,9 @@ export default function Carrinho() {
 
   const totalGeral = frete ? totalComDesconto + frete.valor : totalComDesconto;
 
-  const isLogado =
-    typeof window !== "undefined" &&
-    localStorage.getItem("usuarioLogado") === "true";
-
   const finalizarCompra = () => {
-    if (!isLogado) {
+   const token = localStorage.getItem("token")
+    if (!token) {
       setMensagem("Você precisa estar logado para finalizar a compra.");
       setTimeout(() => setMensagem(""), 3000);
 
@@ -180,6 +188,7 @@ export default function Carrinho() {
       }, 1000);
       return;
     }
+
     setMensagem("Compra finalizada! Obrigado por comprar no Sebão Online.");
     limparCarrinho();
     setTimeout(() => setMensagem(""), 3000);

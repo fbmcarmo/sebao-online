@@ -87,7 +87,8 @@ export default function Home() {
     getLivros()
   }, []);
 
-    useEffect(() => {
+
+  useEffect(() => {
     const token = localStorage.getItem("token"); 
 
     if (token) {
@@ -96,7 +97,6 @@ export default function Home() {
       localStorage.setItem("userId", userId);
     }
   }, []);
-
 
   const handleCategoriaClick = (categoria) => {
     router.push(`/livros?q=${encodeURIComponent(categoria)}`);
