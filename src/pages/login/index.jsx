@@ -180,7 +180,7 @@ export default function Login() {
               x
             </button>
             <h2 className="text-center text-[#884211] font-semibold mb-3">
-              Recupera senha
+              Recuperar senha
               <input
                 type="email"
                 placeholder="Digite seu e-mail"
