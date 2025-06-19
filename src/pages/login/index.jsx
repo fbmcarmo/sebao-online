@@ -15,12 +15,12 @@ export default function Login() {
   const [recoveryEmail, setRecoveryEmail] = useState("");
 
   useEffect(() => {
-    const token = localStorage.getItem('token');
+    const token = localStorage.getItem("token");
 
-    if(token){
-      window.location.href = '/'
+    if (token) {
+      window.location.href = "/";
     }
-  }, [])
+  }, []);
 
   async function clickLogin(event) {
     event.preventDefault();
@@ -51,22 +51,22 @@ export default function Login() {
     }
 
     try {
-      const response = await instance.post('/login', {
+      const response = await instance.post("/login", {
         email: email,
-        password: pass
-      })
+        password: pass,
+      });
 
-    await localStorage.setItem('token', response.data.token)
-    
-    if (response.data.usuario && response.data.usuario.nome) {
-    await localStorage.setItem('usuario', response.data.usuario.nome);
-    }
+      await localStorage.setItem("token", response.data.token);
 
-    toast.success("Login realizado com sucesso")
-    window.location.href = '/'
+      if (response.data.usuario && response.data.usuario.nome) {
+        await localStorage.setItem("usuario", response.data.usuario.nome);
+      }
+
+      toast.success("Login realizado com sucesso");
+      window.location.href = "/";
     } catch (error) {
-      console.log("Erro ao fazer login:", error)
-      toast.error("Erro ao fazer login")
+      console.log("Erro ao fazer login:", error);
+      toast.error("Erro ao fazer login");
     }
   }
 
@@ -176,7 +176,9 @@ export default function Login() {
             <button
               onClick={() => setShowModal(false)}
               className="absolute top-2 right-3 text-xl text-gray-500"
-            ></button>
+            >
+              x
+            </button>
             <h2 className="text-center text-[#884211] font-semibold mb-3">
               Recupera senha
               <input
