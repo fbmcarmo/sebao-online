@@ -5,10 +5,11 @@ import { toast } from 'react-toastify';
 import PageWrapper from '@/components/PageWrapper';
 
 export default function Perfil() {
-  const [usuario, setUsuario] = useState({ nome: '', email: '' });
+  const [usuario, setUsuario] = useState({ name: '', email: '' });
   const [loading, setLoading] = useState(true);
   const [novoNome, setNovoNome] = useState('');
   const [novoEmail, setNovoEmail] = useState('');
+  const [novaSenha, setNovaSenha] = useState('');
   const router = useRouter();
 
   useEffect(() => {
@@ -49,12 +50,17 @@ export default function Perfil() {
     try {
       await instance.put(
         `/users/${userId}`,
-        { nome: novoNome, email: novoEmail },
+        {
+          name: novoNome,
+          email: novoEmail,
+          password: novaSenha, 
+        },
         { headers: { Authorization: `Bearer ${token}` } }
       );
       toast.success('Perfil atualizado com sucesso!');
-      setUsuario({ ...usuario, nome: novoNome, email: novoEmail });
+      setUsuario({ ...usuario, name: novoNome, email: novoEmail });
       localStorage.setItem('usuario', novoNome);
+      setNovaSenha(''); 
     } catch (error) {
       toast.error('Erro ao atualizar perfil');
       console.error(error);
@@ -140,6 +146,17 @@ export default function Perfil() {
               type="email"
               value={novoEmail}
               onChange={(e) => setNovoEmail(e.target.value)}
+              className="w-full border rounded p-2 text-sm"
+            />
+          </div>
+
+          <div className="mb-4">
+            <label className="block text-sm font-semibold mb-1">Nova Senha:</label>
+            <input
+              type="password"
+              value={novaSenha}
+              onChange={(e) => setNovaSenha(e.target.value)}
+              placeholder="Deixe em branco para não alterar"
               className="w-full border rounded p-2 text-sm"
             />
           </div>
