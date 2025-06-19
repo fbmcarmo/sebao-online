@@ -106,47 +106,62 @@ export default function Perfil() {
     );
   };
 
+  if (loading) {
+    return (
+      <PageWrapper>
+        <div className="flex items-center justify-center min-h-screen">
+          <p>Carregando perfil...</p>
+        </div>
+      </PageWrapper>
+    );
+  }
+
   return (
     <PageWrapper>
-      <div className="w-full min-h-screen flex items-center justify-center">
-        <div className="max-w-xl w-full p-6 bg-white rounded shadow">
-          <h1 className="text-2xl font-bold mb-4 text-[#8B4513]">Meu Perfil</h1>
+      <div className="flex items-center justify-center min-h-screen px-4">
+        <div className="w-full max-w-sm sm:max-w-md md:max-w-lg bg-white p-4 sm:p-6 md:p-8 rounded shadow">
+          <h1 className="text-xl sm:text-2xl font-bold mb-4 text-[#8B4513] text-center">
+            Meu Perfil
+          </h1>
 
           <div className="mb-4">
-            <label className="block text-sm font-semibold">Nome:</label>
+            <label className="block text-sm font-semibold mb-1">Nome:</label>
             <input
               type="text"
               value={novoNome}
               onChange={(e) => setNovoNome(e.target.value)}
-              className="w-full border rounded p-2"
+              className="w-full border rounded p-2 text-sm"
             />
           </div>
 
           <div className="mb-4">
-            <label className="block text-sm font-semibold">Email:</label>
+            <label className="block text-sm font-semibold mb-1">Email:</label>
             <input
               type="email"
               value={novoEmail}
               onChange={(e) => setNovoEmail(e.target.value)}
-              className="w-full border rounded p-2"
+              className="w-full border rounded p-2 text-sm"
             />
           </div>
 
-          <button
-            onClick={handleAtualizar}
-            className="bg-[#8B4513] text-white px-4 py-2 rounded hover:bg-[#A0522D] mr-2"
-          >
-            Atualizar Perfil
-          </button>
+          <div className="flex flex-col sm:flex-row gap-2">
+            <button
+              onClick={handleAtualizar}
+              className="bg-[#8B4513] text-white px-4 py-2 rounded hover:bg-[#A0522D] w-full sm:w-auto"
+            >
+              Atualizar Perfil
+            </button>
 
-          <button
-            onClick={confirmarExclusao}
-            className="bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700"
-          >
-            Excluir Conta
-          </button>
+            <button
+              onClick={confirmarExclusao}
+              className="bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700 w-full sm:w-auto"
+            >
+              Excluir Conta
+            </button>
+          </div>
         </div>
       </div>
     </PageWrapper>
   );
 }
+
