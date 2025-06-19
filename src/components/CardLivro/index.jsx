@@ -9,12 +9,13 @@ export default function CardLivro({
   categoria,
 }) {
   return (
-    <div className="w-full max-w-xs sm:max-w-sm md:max-w-[320px] min-h-[520px] flex flex-col rounded-2xl bg-white shadow-2xl border border-[#e5e7eb] hover:border-[#8B4513] transition-all duration-300 overflow-hidden">
-      <div className="w-full h-[320px] sm:h-[350px] md:h-[400px] rounded-t-2xl relative flex-shrink-0">
+    <div className="w-full max-w-xs sm:max-w-sm md:max-w-[320px] min-h-[550px] flex flex-col rounded-2xl
+     bg-white shadow-2xl border border-[#e5e7eb] hover:border-[#8B4513] transition-all duration-300 overflow-hidden">
+      <div className="w-full h-[300px] rounded-t-2xl relative flex-shrink-0">
         <img
-          className="w-full h-full object-cover rounded-t-2xl"
           src={banner}
           alt={titulo}
+          className="w-full h-full object-cover rounded-t-2xl"
         />
         <div
           style={{
@@ -66,7 +67,7 @@ export default function CardLivro({
       <div className="px-4 pb-4 mt-auto">
         <button
           className="w-full flex items-center justify-center gap-2 cursor-pointer
-           text-white text-base font-semibold bg-[#955527] py-3 rounded-xl 
+          text-white text-base font-semibold bg-[#955527] py-3 rounded-xl 
           hover:bg-[#7a431e] transition-colors duration-300 shadow-md"
           onClick={() => (window.location.href = "/carrinho")}
         >
@@ -74,6 +75,6 @@ export default function CardLivro({
           Adicionar ao carrinho
         </button>
       </div>
-    </div>
-  );
+    </div>
+  );
 }

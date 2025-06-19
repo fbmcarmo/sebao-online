@@ -61,10 +61,11 @@ export default function MeusLivros() {
         <button
           onClick={() => buscarLivros(usuarioId)}
           disabled={loading}
-          className="mb-6 flex items-center gap-2 px-4 py-2 bg-[#8B4513] text-white rounded-lg hover:bg-[#6f3913] transition disabled:opacity-50"
+          className="mb-6 flex items-center gap-2 px-6 py-3 bg-[#8B4513]
+           text-white rounded-lg hover:bg-[#6f3913] transition disabled:opacity-50 text-lg"
         >
-          <LuRefreshCcw size={18} />
-          Atualizar lista
+          <LuRefreshCcw size={20} />
+          Atualizar Lista
         </button>
 
         <div className="w-full max-w-6xl grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
@@ -72,7 +73,25 @@ export default function MeusLivros() {
             <p className="text-gray-500">Você ainda não cadastrou nenhum livro.</p>
           ) : (
             livros.map((livro) => (
-              <div key={livro.id} className="relative">
+              <div key={livro.id} className="flex flex-col">
+                <div className="flex justify-center gap-4 mb-3">
+                  <button
+                    onClick={() => router.push(`/editarLivro/${livro.id}`)}
+                    className="flex items-center justify-center gap-1 px-3 py-1
+                     bg-[#9B87F5] text-white rounded hover:bg-[#7c67e0] text-sm font-medium transition"
+                  >
+                    <PiNotePencil size={16} />
+                    Editar
+                  </button>
+                  <button
+                    onClick={() => deletarLivro(livro.id)}
+                    className="flex items-center justify-center gap-1 px-3 py-1
+                     bg-[#ef4444] text-white rounded hover:bg-[#dc2626] text-sm font-medium transition"
+                  >
+                    <FiTrash2 size={16} />
+                    Excluir
+                  </button>
+                </div>
                 <CardLivro
                   banner={livro.banner}
                   titulo={livro.titulo}
@@ -81,21 +100,6 @@ export default function MeusLivros() {
                   preco={livro.preco}
                   categoria={livro.categoria}
                 />
-
-                <div className="absolute top-2 right-2 flex gap-2">
-                  <button
-                    onClick={() => router.push(`/editar-livro/${livro.id}`)}
-                    className="p-2 bg-[#9B87F5]/20 text-[#9B87F5] rounded-full hover:bg-[#9B87F5]/40"
-                  >
-                    <PiNotePencil size={18} />
-                  </button>
-                  <button
-                    onClick={() => deletarLivro(livro.id)}
-                    className="p-2 bg-[#ef4444]/20 text-[#ef4444] rounded-full hover:bg-[#ef4444]/40"
-                  >
-                    <FiTrash2 size={18} />
-                  </button>
-                </div>
               </div>
             ))
           )}

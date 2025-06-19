@@ -4,8 +4,11 @@ import CustomSelect from "@/components/CustomSelect";
 import PageWrapper from "@/components/PageWrapper";
 import { useState } from "react";
 import { toast } from "react-toastify";
+import { useRouter } from "next/router";
 
 export default function CadastrarLivro() {
+    const router = useRouter();
+
     const [titulo, setTitulo] = useState("");
     const [autor, setAutor] = useState("");
     const [preco, setPreco] = useState(0);
@@ -41,10 +44,17 @@ export default function CadastrarLivro() {
             setEstado("");
             setDescricao("");
             setBanner("");
+
+            // Redireciona para a página de Meus Livros após cadastrar
+            router.push("/meusLivros");
         } catch (error) {
             console.error(error);
             toast.error("Erro ao cadastrar livro!");
         }
+    }
+
+    function handleCancel() {
+        router.push("/meusLivros");
     }
 
     return (
@@ -139,7 +149,8 @@ export default function CadastrarLivro() {
 
                         <div className="w-full flex flex-col sm:flex-row justify-end gap-4 mt-2">
                             <button
-                                type="reset"
+                                type="button"
+                                onClick={handleCancel}
                                 className="w-full sm:w-[100px] h-[45px] rounded-md bg-[#FAF8F5]
                                  hover:bg-[#8B4513]/20 border border-[#3a364c] text-black"
                             >
@@ -159,3 +170,4 @@ export default function CadastrarLivro() {
         </PageWrapper>
     );
 }
+
