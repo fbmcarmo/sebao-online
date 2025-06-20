@@ -76,7 +76,6 @@ export default function MeusLivros() {
                 key={livro.id}
                 className="flex flex-col border border-gray-300 rounded-xl shadow-sm p-4 bg-white"
               >
-                {/* Botões acima do card */}
                 <div className="flex justify-center gap-3 mb-4">
                   <button
                     onClick={() => router.push(`/editarLivro/${livro.id}`)}
@@ -95,8 +94,6 @@ export default function MeusLivros() {
                     Excluir
                   </button>
                 </div>
-
-                {/* Card do livro */}
                 <CardLivro
                   banner={livro.banner}
                   titulo={livro.titulo}
