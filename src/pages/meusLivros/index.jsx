@@ -61,24 +61,27 @@ export default function MeusLivros() {
         <button
           onClick={() => buscarLivros(usuarioId)}
           disabled={loading}
-          className="mb-6 flex items-center gap-2 px-6 py-3 bg-[#8B4513] cursor-po
-           text-white rounded-lg hover:bg-[#6f3913] transition disabled:opacity-50 text-lg"
+          className="mb-6 flex items-center gap-2 px-6 py-3 bg-[#8B4513] text-white rounded-lg hover:bg-[#6f3913] transition disabled:opacity-50 text-lg"
         >
           <LuRefreshCcw size={20} />
           Atualizar Lista
         </button>
 
-        <div className="w-full max-w-6xl grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+        <div className="w-full max-w-6xl grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
           {livros.length === 0 ? (
             <p className="text-gray-500">Você ainda não cadastrou nenhum livro.</p>
           ) : (
             livros.map((livro) => (
-              <div key={livro.id} className="flex flex-col">
-                <div className="flex justify-center gap-4 mb-3">
+              <div
+                key={livro.id}
+                className="flex flex-col border border-gray-300 rounded-xl shadow-sm p-4 bg-white"
+              >
+                {/* Botões acima do card */}
+                <div className="flex justify-center gap-3 mb-4">
                   <button
                     onClick={() => router.push(`/editarLivro/${livro.id}`)}
                     className="flex items-center justify-center gap-1 px-3 py-1 cursor-pointer
-                     bg-[#9B87F5] text-white rounded hover:bg-[#7c67e0] text-sm font-medium transition"
+                    bg-[#9B87F5] text-white rounded hover:bg-[#7c67e0] text-sm font-medium transition"
                   >
                     <PiNotePencil size={16} />
                     Editar
@@ -86,12 +89,14 @@ export default function MeusLivros() {
                   <button
                     onClick={() => deletarLivro(livro.id)}
                     className="flex items-center justify-center gap-1 px-3 py-1 cursor-pointer
-                     bg-[#ef4444] text-white rounded hover:bg-[#dc2626] text-sm font-medium transition"
+                    bg-[#ef4444] text-white rounded hover:bg-[#dc2626] text-sm font-medium transition"
                   >
                     <FiTrash2 size={16} />
                     Excluir
                   </button>
                 </div>
+
+                {/* Card do livro */}
                 <CardLivro
                   banner={livro.banner}
                   titulo={livro.titulo}
@@ -108,3 +113,4 @@ export default function MeusLivros() {
     </PageWrapper>
   );
 }
+
