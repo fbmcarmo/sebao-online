@@ -26,6 +26,10 @@ export default function Header() {
       const token = localStorage.getItem("token");
       const userId = localStorage.getItem("userId");
 
+      if (!token || !userId) {
+        return;
+      }
+
       try {
         const response = await instance.get(`/users/${userId}`, {
           headers: { Authorization: `Bearer ${token}` },
