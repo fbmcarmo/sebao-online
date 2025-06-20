@@ -61,7 +61,7 @@ export default function MeusLivros() {
         <button
           onClick={() => buscarLivros(usuarioId)}
           disabled={loading}
-          className="mb-6 flex items-center gap-2 px-6 py-3 bg-[#8B4513]
+          className="mb-6 flex items-center gap-2 px-6 py-3 bg-[#8B4513] cursor-po
            text-white rounded-lg hover:bg-[#6f3913] transition disabled:opacity-50 text-lg"
         >
           <LuRefreshCcw size={20} />
@@ -77,7 +77,7 @@ export default function MeusLivros() {
                 <div className="flex justify-center gap-4 mb-3">
                   <button
                     onClick={() => router.push(`/editarLivro/${livro.id}`)}
-                    className="flex items-center justify-center gap-1 px-3 py-1
+                    className="flex items-center justify-center gap-1 px-3 py-1 cursor-pointer
                      bg-[#9B87F5] text-white rounded hover:bg-[#7c67e0] text-sm font-medium transition"
                   >
                     <PiNotePencil size={16} />
@@ -85,7 +85,7 @@ export default function MeusLivros() {
                   </button>
                   <button
                     onClick={() => deletarLivro(livro.id)}
-                    className="flex items-center justify-center gap-1 px-3 py-1
+                    className="flex items-center justify-center gap-1 px-3 py-1 cursor-pointer
                      bg-[#ef4444] text-white rounded hover:bg-[#dc2626] text-sm font-medium transition"
                   >
                     <FiTrash2 size={16} />
