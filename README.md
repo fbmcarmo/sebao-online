@@ -1,40 +1,226 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/pages/api-reference/create-next-app).
+# 📚 Sebão Online
 
-## Getting Started
+Aplicação web desenvolvida em **Next.js** para o **Sebão Online**, um marketplace voltado para compra, venda e troca de livros usados.
 
-First, run the development server:
+O sistema oferece uma interface moderna, intuitiva e responsiva, permitindo que usuários naveguem pelo catálogo de livros, realizem pesquisas, efetuem login, cadastrem novos livros e gerenciem suas informações. Toda a comunicação com os dados é realizada por meio da API REST do projeto.
+
+🔗 **Frontend:** https://github.com/fbmcarmo/sebao-online
+
+🔗 **API:** https://github.com/fbmcarmo/api-sebao-online
+
+---
+
+## 🚀 Funcionalidades
+
+* 📚 Visualização do catálogo de livros
+* 🔍 Pesquisa de livros
+* 👤 Cadastro de usuários
+* 🔐 Login e autenticação
+* 📖 Visualização dos detalhes dos livros
+* ➕ Cadastro de novos livros
+* ✏️ Edição de livros
+* ❌ Exclusão de livros
+* 📱 Interface responsiva
+* 🔄 Integração com API REST
+
+---
+
+## 🛠️ Tecnologias Utilizadas
+
+* Next.js
+* React.js
+* JavaScript (ES6+)
+* Axios
+* CSS Modules
+* JWT
+* Vercel
+
+---
+
+## 📂 Estrutura do Projeto
+
+```text
+.
+├── components/
+├── pages/
+│   ├── api/
+│   ├── livros/
+│   ├── login/
+│   ├── cadastro/
+│   └── index.js
+│
+├── public/
+├── styles/
+├── utils/
+├── package.json
+└── next.config.js
+```
+
+---
+
+## ⚙️ Pré-requisitos
+
+Antes de executar o projeto, tenha instalado:
+
+* Node.js (18 ou superior)
+* npm ou yarn
+
+Também é necessário que a API esteja em execução.
+
+---
+
+## 📥 Instalação
+
+Clone o repositório:
+
+```bash
+git clone https://github.com/fbmcarmo/sebao-online.git
+```
+
+Entre na pasta do projeto:
+
+```bash
+cd sebao-online
+```
+
+Instale as dependências:
+
+```bash
+npm install
+```
+
+---
+
+## 🔑 Variáveis de Ambiente
+
+Crie um arquivo `.env.local` na raiz do projeto.
+
+Exemplo:
+
+```env
+NEXT_PUBLIC_API_URL=http://localhost:3000
+```
+
+---
+
+## ▶️ Executando o Projeto
+
+Inicie o servidor de desenvolvimento:
 
 ```bash
 npm run dev
-# or
+
+# ou
+
 yarn dev
-# or
+
+# ou
+
 pnpm dev
-# or
+
+# ou
+
 bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+A aplicação estará disponível em:
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+```text
+http://localhost:3000
+```
 
-[API routes](https://nextjs.org/docs/pages/building-your-application/routing/api-routes) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+Sempre que um arquivo for alterado, o Next.js atualizará automaticamente a aplicação durante o desenvolvimento.
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/pages/building-your-application/routing/api-routes) instead of React pages.
+---
 
-This project uses [`next/font`](https://nextjs.org/docs/pages/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 🔄 Comunicação com a API
 
-## Learn More
+O frontend consome os dados da API REST do Sebão Online utilizando requisições HTTP.
 
-To learn more about Next.js, take a look at the following resources:
+Fluxo da aplicação:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn-pages-router) - an interactive Next.js tutorial.
+```text
+Usuário
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+    │
+    ▼
 
-## Deploy on Vercel
+Frontend (Next.js)
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+    │
+    ▼
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/pages/building-your-application/deploying) for more details.
+API REST (Node.js + Express)
+
+    │
+    ▼
+
+PostgreSQL
+```
+
+---
+
+## 📄 Páginas da Aplicação
+
+* Home
+* Login
+* Cadastro de Usuário
+* Listagem de Livros
+* Cadastro de Livros
+* Edição de Livros
+* Detalhes do Livro
+
+---
+
+## 🎨 Interface
+
+A aplicação foi desenvolvida priorizando:
+
+* Layout responsivo
+* Navegação intuitiva
+* Componentização
+* Boa experiência do usuário
+* Consumo de API desacoplado
+
+---
+
+## 🚀 Deploy
+
+A aplicação pode ser publicada facilmente utilizando a **Vercel**, plataforma oficial para projetos Next.js.
+
+Para realizar o deploy:
+
+```bash
+npm run build
+```
+
+Documentação oficial:
+
+https://nextjs.org/docs/pages/building-your-application/deploying
+
+---
+
+## 📖 Saiba Mais
+
+Para aprender mais sobre o Next.js:
+
+* https://nextjs.org/docs
+* https://nextjs.org/learn-pages-router
+* https://github.com/vercel/next.js
+
+---
+
+## 👨‍💻 Desenvolvedor
+
+**Bruno Moreira**
+
+Full Stack Software Engineer
+
+* GitHub: https://github.com/fbmcarmo
+* LinkedIn: https://www.linkedin.com/in/fbmcarmo
+
+---
+
+## 📄 Licença
+
+Este projeto foi desenvolvido para fins acadêmicos e de demonstração de conhecimentos em desenvolvimento Full Stack.
